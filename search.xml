@@ -63,6 +63,63 @@
     </entry>
     
     <entry>
+      <title><![CDATA[嗨~~~~~闭包了解一下]]></title>
+      <url>/2019/04/05/%E5%97%A8-%E9%97%AD%E5%8C%85%E4%BA%86%E8%A7%A3%E4%B8%80%E4%B8%8B/</url>
+      <content type="html"><![CDATA[<h1 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h1><h2 id="闭包的概念："><a href="#闭包的概念：" class="headerlink" title="闭包的概念："></a>闭包的概念：</h2><p><strong>当前私有栈内存中的某个东西（变量）正被此栈内存以外的的栈占用着，此时形成了闭包</strong></p>
+<h3 id="概念："><a href="#概念：" class="headerlink" title="概念："></a>概念：</h3><blockquote>
+<p>闭包就是形成了一个不销毁的私有作用域（私有栈内存）就是闭包</p>
+</blockquote>
+<h4 id="闭包的两种常见模型"><a href="#闭包的两种常见模型" class="headerlink" title="闭包的两种常见模型"></a>闭包的两种常见模型</h4><p><strong>闭包：柯理化函数</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function f()&#123;</span><br><span class="line">    return function ()&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var f=fn()</span><br></pre></td></tr></table></figure>
+
+<p><strong>闭包：惰性函数</strong> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var utils=(function()&#123;</span><br><span class="line"></span><br><span class="line">return &#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;)()</span><br><span class="line">此时util占用了return  所以自调用函数不能被销毁</span><br></pre></td></tr></table></figure>
+
+<h2 id="闭包的作用："><a href="#闭包的作用：" class="headerlink" title="闭包的作用："></a>闭包的作用：</h2><p>1.缓存数据，形成不销毁的栈内存，把一些值保存下来，方便后面的调取和使用，延长作用域链</p>
+<p>2.闭包具有保护作用，保护内部私有变量不受外界干扰</p>
+<h2 id="闭包在真实项目中的应用"><a href="#闭包在真实项目中的应用" class="headerlink" title="闭包在真实项目中的应用"></a>闭包在真实项目中的应用</h2><p><strong>真实项目中为了保护js的性能（堆栈性能优化），应该尽量减少闭包的使用（不销毁的堆栈内存会消耗性能的）</strong></p>
+<h6 id="闭包在保护方面的应用："><a href="#闭包在保护方面的应用：" class="headerlink" title="闭包在保护方面的应用："></a>闭包在保护方面的应用：</h6><blockquote>
+<p>在团队协作开发的时候，应尽可能减少全局变量的使用，以防止相互之间的冲突&gt;&gt;（‘全局<br>变量污染’），此时我们完全可以把自己这部分内容封装到一个闭包中，让全局变&gt;量转换为私有变量<br>不仅如此，我们封装类库，和程序的时候都会放到闭包中保护起来，防止和用户的程序冲突</p>
+</blockquote>
+<h6 id="闭包在保存方面的使用"><a href="#闭包在保存方面的使用" class="headerlink" title="闭包在保存方面的使用"></a>闭包在保存方面的使用</h6><blockquote>
+</blockquote>
+<h2 id="闭包的应用："><a href="#闭包的应用：" class="headerlink" title="闭包的应用："></a>闭包的应用：</h2><p>//函数模式的闭包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function fn()&#123;</span><br><span class="line">    var num=10;</span><br><span class="line">    return function()&#123;</span><br><span class="line">        console.log(num)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var f1=fn();</span><br><span class="line">var result=f1();</span><br><span class="line">console.log(result)</span><br><span class="line">此时的result等于10完成了对num的缓存；</span><br></pre></td></tr></table></figure>
+
+<p>//对象模式的闭包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function f1()&#123;</span><br><span class="line">    var num=10;</span><br><span class="line">    return &#123;age:num&#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line">var obj=f1();</span><br><span class="line">console.log(obj.age)</span><br><span class="line">此时完成了对象模式中对num的缓存</span><br></pre></td></tr></table></figure>
+
+<p>//关于闭包的两个小案例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">1.</span><br><span class="line">function f1()&#123;</span><br><span class="line">    var num=10;</span><br><span class="line">    return function()&#123;</span><br><span class="line">        num++;</span><br><span class="line">        return num;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var f=f1();</span><br><span class="line">console.log(f())</span><br><span class="line">console.log(f())</span><br><span class="line">console.log(f())</span><br><span class="line">num的值分别等于11，12，13</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">2.</span><br><span class="line">function f2()&#123;</span><br><span class="line">    var random=Math.random()*10+1;</span><br><span class="line">    return function()&#123;</span><br><span class="line">        return random</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var f=f2();</span><br><span class="line">f();</span><br><span class="line">f();</span><br><span class="line">f();</span><br></pre></td></tr></table></figure>
+
+<h4 id="总结：如果想缓存数据，就把数据放在外层数据和里层数据中间的位置，"><a href="#总结：如果想缓存数据，就把数据放在外层数据和里层数据中间的位置，" class="headerlink" title="总结：如果想缓存数据，就把数据放在外层数据和里层数据中间的位置，"></a>总结：如果想缓存数据，就把数据放在外层数据和里层数据中间的位置，</h4><h4 id="局部变量是在函数中，函数使用结束后，局部变量就会被自动释放"><a href="#局部变量是在函数中，函数使用结束后，局部变量就会被自动释放" class="headerlink" title="局部变量是在函数中，函数使用结束后，局部变量就会被自动释放"></a>局部变量是在函数中，函数使用结束后，局部变量就会被自动释放</h4><h4 id="闭包后，里面的局部变量的使用作用域链就会被延长"><a href="#闭包后，里面的局部变量的使用作用域链就会被延长" class="headerlink" title="闭包后，里面的局部变量的使用作用域链就会被延长"></a>闭包后，里面的局部变量的使用作用域链就会被延长</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var i=1;</span><br><span class="line">function fn(i)&#123;</span><br><span class="line">    return function (n)&#123;</span><br><span class="line">        console.log(n+(++i))</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var f=fn(2);    //此时的fn依赖于f。所以f被保存</span><br><span class="line">f(3); </span><br><span class="line">fn(5)(6);   //被即时释放</span><br><span class="line">fn(7)(8);</span><br><span class="line">f(4)</span><br></pre></td></tr></table></figure>
+
+<h3 id="闭包的一个常见的面试题"><a href="#闭包的一个常见的面试题" class="headerlink" title="闭包的一个常见的面试题"></a>闭包的一个常见的面试题</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var arr=document.getElementsByClassName(&apos;arr&apos;)</span><br><span class="line">    for(var i=0;i&lt;arr.length;i++)&#123;</span><br><span class="line">        arr[i].addEventListener(&apos;click&apos;,function()&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            console.log(i)       //i的结果全部为6</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>原因：当我们点击的时候，外界js代码已经执行完毕，由于作用域链向上查找的i，是for中的i，也是全局变量中的i，所以都是6</p>
+<h5 id="用闭包解决上面这个问题："><a href="#用闭包解决上面这个问题：" class="headerlink" title="用闭包解决上面这个问题："></a>用闭包解决上面这个问题：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var arr=document.getElementsByClassName(&apos;arr&apos;)</span><br><span class="line">    for(var i=0;i&lt;arr.length;i++)&#123;</span><br><span class="line">        arr[i].addEventListener(&apos;click&apos;,(function(n)&#123;</span><br><span class="line"></span><br><span class="line">            n=i</span><br><span class="line">            return function()&#123;</span><br><span class="line">                console.log(n)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;(i)))</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>将其改写成闭包的形式，缓存数据，用自调用函数的形式返回一个函数</p>
+</blockquote>
+]]></content>
+      
+        <categories>
+            
+            <category> 闭包 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> JavaScript </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[数组的内置方法你都记住了么]]></title>
       <url>/2019/03/25/%E6%95%B0%E7%BB%84%E7%9A%84%E5%86%85%E7%BD%AE%E6%96%B9%E6%B3%95%E4%BD%A0%E9%83%BD%E8%AE%B0%E4%BD%8F%E4%BA%86%E4%B9%88/</url>
       <content type="html"><![CDATA[<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><h3 id="会改变原数组的方法"><a href="#会改变原数组的方法" class="headerlink" title="会改变原数组的方法"></a>会改变原数组的方法</h3><p>1.pop();<br>2.push();<br>3.shift();<br>4.unshift();<br>5.reverse();<br>6.sort()；<br>7.splice（）</p>
