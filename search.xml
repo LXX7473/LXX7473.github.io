@@ -3,6 +3,66 @@
   
     
     <entry>
+      <title><![CDATA[浅析call，apply，bind]]></title>
+      <url>/2019/07/25/%E6%B5%85%E6%9E%90call%EF%BC%8Capply%EF%BC%8Cbind/</url>
+      <content type="html"><![CDATA[<h2 id="解析apply，call，bind"><a href="#解析apply，call，bind" class="headerlink" title="解析apply，call，bind"></a>解析apply，call，bind</h2><blockquote>
+<p>整体都是用来改变this的指向的</p>
+</blockquote>
+<h3 id="三者来源"><a href="#三者来源" class="headerlink" title="三者来源"></a>三者来源</h3><blockquote>
+<p>call，apply,bind来自于Function中的prototype中</p>
+</blockquote>
+<h3 id="call的用法"><a href="#call的用法" class="headerlink" title="call的用法"></a>call的用法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fn.call([this], 参数1，参数2......)</span><br><span class="line"></span><br><span class="line">//[this]的值是谁，fn的调用者就是谁</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>fn.call表示的是实例通过原型链的查找机制，找到Function.prototype上的call方法<br>fn.call()表示的是将找到的call方法执行</p>
+</blockquote>
+<p>当call方法执行的时候，内部处理了一些事情；</p>
+<ul>
+<li>首先把要操作函数中的this关键字变成calL()方法第一个传递的实参值</li>
+<li>把call方法第二个以及第二个以后的实参获取到</li>
+<li>把要操作的函数执行，并且把第二个以后传递进来的实参传给函数</li>
+</ul>
+<h4 id="一道关于call的面试题："><a href="#一道关于call的面试题：" class="headerlink" title="一道关于call的面试题："></a>一道关于call的面试题：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">window.name=&apos;lx&apos;;</span><br><span class="line"></span><br><span class="line">let fn=function()&#123;</span><br><span class="line">    console.log(this.name)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let obj=&#123;</span><br><span class="line">    name:&apos;obj&apos;,</span><br><span class="line">    fn:fn</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let oo=&#123;name:&apos;oo&apos;&#125;</span><br><span class="line"></span><br><span class="line">fn();  // 此时输出的结果是lx</span><br><span class="line"></span><br><span class="line">obj.fn();  // 此时输出的是obj</span><br><span class="line"></span><br><span class="line">oo.fn(); // 此时会报错</span><br><span class="line"></span><br><span class="line">fn.call(oo); // 此时输出的结果是oo</span><br></pre></td></tr></table></figure>
+
+<h4 id="call的细节"><a href="#call的细节" class="headerlink" title="call的细节"></a>call的细节</h4><ol>
+<li>在非严格模式下，如果参数不传，或者第一个参数为null||undefined，this都指向undefined</li>
+<li>在严格模式下，第一个参数是谁，this就指向谁（包括null和undefined），不传的话this是undefined</li>
+<li>当一个函数被call调用，这个函数本身绝对不能是箭头函数（因为箭头函数本身没有this）！！！！</li>
+</ol>
+<h3 id="apply"><a href="#apply" class="headerlink" title="apply"></a>apply</h3><p>apply和call基本一模一样，唯一却别在于传参方式</p>
+<h4 id="apply的用法"><a href="#apply的用法" class="headerlink" title="apply的用法"></a>apply的用法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fn.apply([this],[ary[0],ary[1].ary[2]])</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>apply把需要传递fn的参数放到一个数组中传递进去，虽然写的是一个数组，但是也相当于给fn一个一个传递的</p>
+</blockquote>
+<h3 id="bind"><a href="#bind" class="headerlink" title="bind"></a>bind</h3><blockquote>
+<p>语法方面和call是一样的，唯一的区别在于立即执行还是等待执行</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fn.call(obj,10,20) //改变fn中的this，并且把fn立即执行</span><br><span class="line"></span><br><span class="line">fn.bind(obj,10,20)  //改变fn中的this，，但是此时的fn没有执行</span><br></pre></td></tr></table></figure>
+
+<h2 id="bind的应用"><a href="#bind的应用" class="headerlink" title="bind的应用"></a>bind的应用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">//如何一直输出同一个随机数</span><br><span class="line"></span><br><span class="line"> function showRandom()&#123;</span><br><span class="line">        this.number=parseInt(Math.random()*10+1);</span><br><span class="line">    &#125;</span><br><span class="line">    showRandom.prototype.show1=function()&#123;</span><br><span class="line">        window.setInterval(this.show2.bind(this),1000)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    showRandom.prototype.show2=function()&#123;</span><br><span class="line">        console.log(this.number)</span><br><span class="line">    &#125;</span><br><span class="line">    var sr=new showRandom();</span><br><span class="line">    sr.show1();</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>根据上述代码call和apply都是改变this的指向，默认是调用完毕的；<br>而bind改变指向之后也仅仅是一个函数；</p>
+</blockquote>
+]]></content>
+      
+        <categories>
+            
+            <category> 面试 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> JavaScript </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[阿里经典面试题（内附详细解析哟）]]></title>
       <url>/2019/02/25/%E9%98%BF%E9%87%8C%E7%BB%8F%E5%85%B8%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%88%E5%86%85%E9%99%84%E8%AF%A6%E7%BB%86%E8%A7%A3%E6%9E%90%E5%93%9F%EF%BC%89/</url>
       <content type="html"><![CDATA[<h4 id="函数的角色"><a href="#函数的角色" class="headerlink" title="函数的角色"></a>函数的角色</h4><ol>
