@@ -6,10 +6,10 @@
     <link rel="canonical" href="http://www.lx326.com/2019/07/25/超级详细的前端性能优化方案/">
     
     
-    <title>超级详细的前端性能优化方案 | Personal Blog</title>
+    <title>超级详细的前端性能优化方案 | LX&#39;s  Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta name="keywords" content>
+    <meta name="keywords" content="前端优化">
     <link rel="shortcut icon" href="/img/favicon.ico">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css">
     <link rel="stylesheet" href="/css/style.css?v=1.4.3">
@@ -167,6 +167,8 @@
 </time>
 
 
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端优化/">前端优化</a></li></ul>
+
             
         </h5>
         
@@ -198,6 +200,8 @@
             <time class="post-time" title="2019-07-25 20:54:55" datetime="2019-07-25T12:54:55.000Z"  itemprop="datePublished">2019-07-25</time>
 
             
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端优化/">前端优化</a></li></ul>
+
 
 
             
@@ -209,7 +213,97 @@
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
             
-            
+            <h2 id="前端性能优化方案"><a href="#前端性能优化方案" class="headerlink" title="前端性能优化方案"></a>前端性能优化方案</h2><ol>
+<li><p>在JS中尽量减少闭包的使用（原因：闭包会生成不释放的栈内存）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">A：循环给元素做事件绑定的时候，尽可能地把后期需要的信息（例如索引）</span><br><span class="line">，储存在元素的自定义属性上，而不是创建闭包存储</span><br><span class="line"></span><br><span class="line">B：可以在最外层形成一个闭包，把后续需要的公共信息进行存储</span><br><span class="line">，而不是每一个方法都创建闭包（例如：单例模式）</span><br><span class="line"></span><br><span class="line">C：尽可能的手动释放，不会占用内存（将对象的引用地址赋值为null）</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>尽量合并css和js文件（把需要人引入的css合并为1个，js也合并为一个），原理：是在减少http请求次数尽可能地把合并后的代码进行压缩，减少http请求资源的大小 </p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">解决方案利用webpack这种自动化构建工具，</span><br><span class="line">可以帮我们实现代码的合并和压缩（工程化开发的一种）</span><br><span class="line"></span><br><span class="line">在移动端开发，（或者追求高性能的pc端开发）比如百度首页，</span><br><span class="line">如果css和js不是需要很多，我们可以选择把css和js编程内嵌式（也就是把代码直接写到html中）</span><br></pre></td></tr></table></figure>
+
+<p>3.尽量使用字体图标或者 svg图标 ，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">来代替传统的png图片，因为字体图标等是矢量图（基于代码编写出来的）</span><br><span class="line">，放大不会变形，而且渲染速度快，相对比位图（png,jpg）要小一些</span><br></pre></td></tr></table></figure>
+
+<p>4.减少对dom的操作，（主要是减少dom的重绘和回流（重排））</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">A：关于重排的分离读写</span><br><span class="line">B：使用文档碎片或者字符串拼接做数据绑定（dom的动态创建）</span><br></pre></td></tr></table></figure>
+
+<p>​<br>​<br>​<br>​    </p>
+<p>5.在js中避免嵌套循环（‘这种循环会额外增加许多循环次数’）和‘死循环’（一旦遇到死循环，浏览器就卡壳了）</p>
+<p>6.采用图片的懒加载（延迟加载）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">目的就是为了减少页面‘第一次加载’过程中http的请求次数，让页面打开速度变快</span><br><span class="line"></span><br><span class="line">步骤：开始加载页面的时候，所有的真实图片都不去发送http请求加载。</span><br><span class="line">而是给一张占位的背景图，当页面加载完，并且图片在可视区域内我们再去做图片加载，</span><br></pre></td></tr></table></figure>
+
+<p>7.利用浏览器和服务器端的缓存技术（304缓存），把一些不经常更新的静态资源文件做缓存处理，（例如：js，css，静态图片等都可以做缓存）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">原理是为了减少http的请求大小 ，让获取速度更快一点。</span><br></pre></td></tr></table></figure>
+
+<p>8.尽可能使用事件委托（事件代理）来处理事件绑定的操作，减少dom的频繁操作 ，其中包括给每一个dom元素做事件绑定</p>
+<p>9.尽量减少css表达式的使用（expression）</p>
+<p>10.css解析器的解析规则是从右向左解析</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.container .link a&#123;</span><br><span class="line">    </span><br><span class="line">    先找到所有的A，在筛选是在.link样式类中，最后在筛选.container中的，</span><br><span class="line">    操作起来是消耗性能的，我们在使用css选择器的时候尽可能减少对标签选择器的使用 </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>11.做CDN加速（重量级加速，烧钱机器）</p>
+<p>图示：</p>
+<figure class="image-box">
+                <a rel=超级详细的前端性能优化方案 href="https://note.youdao.com/yws/res/5243/313B960A4CE746619AB163EE039D4598" title="image" data-fancybox="images"><img src="https://note.youdao.com/yws/res/5243/313B960A4CE746619AB163EE039D4598" alt="image" title class></a>
+                <p>image</p>
+            </figure>
+
+
+
+
+
+
+
+
+
+
+
+<p>12.css雪碧图技术（css sprite / css 图片精灵）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">把所有相对较小资源的图片汇总到一张大图上，后期我们只需要把大图加载下来，</span><br><span class="line">用背景定位的方式展示对应的小图即可</span><br><span class="line"></span><br><span class="line">.box&#123;</span><br><span class="line">    background:url(&apos;xxx.png&apos;)</span><br><span class="line">&#125;</span><br><span class="line">.box1&#123;</span><br><span class="line">    background-position:xx xx</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.box2&#123;</span><br><span class="line">    background-position:xx xx</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;div class=&apos;bg box1&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>13.减少本地cookie的使用（最主要的就是减少本地cookie存储内容的大小）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">因为客户端操作cookie的时候。这些信息总是在客户端和服务器端的传来传去</span><br></pre></td></tr></table></figure>
+
+<p>14.页面中的数据获取采用异步编程和延迟分批加载</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">使用异步获取数据，是为了降低hhttp通道的堵塞，</span><br><span class="line">不会因为数据没有请求回来耽误下面信息的渲染，</span><br><span class="line">提高页面的打开速度（我们可以这样处理，需要动态绑定数据的区域先隐藏，</span><br><span class="line">等数据返回并且绑定完成后在让其显示）</span><br><span class="line"></span><br><span class="line">延迟分批加载l类似于图片的懒加载，是为了减少第一次页面加载时候的http请求次数</span><br></pre></td></tr></table></figure>
+
+<ol start="15">
+<li>页面中出现音视频标签，</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">我们不让页面加载的时候就去加载这些资源（要不然加载速度会变慢）</span><br><span class="line">（方案：只需要设置preload：&quot;none&quot;即可）等到页面加载完成，音视频播放的时候，</span><br><span class="line">我们再去加载音视频资源</span><br></pre></td></tr></table></figure>
+
+<p>16.在客户端和服务器端进行信息交互的时候，对于多项数据我们尽可能基于json格式进行传送（json格式数据处理方式，资源偏小—–》》》》》相对于xml格式的传输）</p>
+<p>17.尽可能实现js的封装，（低耦合高内聚），较少页面中的冗余代码（减少http资源请求的大小）</p>
+<p>18.css中设置定位后最好使用z-index改变层级让所有的盒子，不在相同的平面上，这样在后续的处理中，性能可以有一些的提高</p>
+<p>19.在基于AJAX的get请求进行数据交互的时候，根据需求可以让其产生缓存（这个缓存不是304缓存），这样下一次从相同地址获取的数据是上一次缓存的数据（但是很少用，项目中一般会刻意清除这个缓存）</p>
+<p>20.尽量减少对filter滤镜这个属性的使用(这个属性消耗性能较大)</p>
+<p>21.在css导入的时候，尽量减少使用@import导入式，因为@import是同步操作，只有把这个对应的css导入，才会向下加载，而link是异步操作。</p>
+<p>22.使用window.requestAnimationFrame（js中的帧动画）代替传统的定时器动画</p>
+<p>23.减少递归的使用，避免死递归，避免由于递归导致的栈内存嵌套（建议使用尾递归）</p>
+<p>24.避免使用iframe（不仅不好管理样式，而且相当于在a页面中加载了其他页面，消耗大）</p>
+<p>25.利用h5中的localstorage本地存储或者是manifest离线缓存做一些信息的本地存储，下一次加载页面的时候直接从本地获取，减少http请求次数；</p>
+<p>26.基于script标签调取js的时候，客户已经使用defer或者async来异步加载</p>
+<p>27.</p>
+<p>==额外技巧==</p>
+<p>主要就分三条</p>
+<ol>
+<li>减少http的请求次数和请求大小</li>
+<li>代码优化</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-&gt;有利于SEO</span><br><span class="line"></span><br><span class="line">-&gt;有利于代码维护</span><br><span class="line"></span><br><span class="line">-&gt;有利于性能消耗</span><br><span class="line"></span><br><span class="line">js优化的108条建议</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>DNS以及HTTP通讯方式的优化</li>
+</ol>
+<p>1.我们一般都把css放在body上，把js放在body下面（原因：先加载css再加载js，先加载css是保证渲染页面的过程中，元素是带着样式渲染的，而js一般都不是用来操作dom元素的，需要等到元素加载完再操作）</p>
+<p>2.能用css搞定的绝不用js ，能用原生js搞定的绝不用插件，绝对不使用flash（除了音视频的低版本浏览器播放）<br>====》css处理动画的性能优于js，而且css中的transform变形还开了硬件加速</p>
+<p>3.js中尽量减少对eval的使用，因为js合并压缩的时候，可能出现因为符号不完善，导致代码执行优先级错乱问题，eval处理起来消耗的性能也是偏大一点；</p>
+<p>4.使用keep-alive实现客户端和服务器之间的长连接</p>
+<p>5.尽量使用设计模式来管理我们的代码（单例，构造，promise，发布订阅），方便后期的升级和维护</p>
+<p>6.开启服务器端的gzip（这个压缩可以减少请求资源的文件大小），其实客户端的图片等资源也是可以进行压缩的（但是对于24位的位图，压缩之后可能就变得模糊）</p>
+<p>7.页面中不要出现无效的连接（利于seo优化），还有其他的技巧，提高关键字的曝光率，img需要提高曝光率，img需要加alt，设置meta标签，标签语义化。</p>
+<p>8.避免使用with语句（非常消耗内存）</p>
+
         </div>
         
 <blockquote class="post-copyright">
@@ -237,6 +331,8 @@
         
         <div class="post-footer">
             
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端优化/">前端优化</a></li></ul>
+
             <div class="page-share-wrap">
     
 
@@ -244,7 +340,7 @@
     <ul class="reset share-icons">
       
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/07/25/超级详细的前端性能优化方案/&title=《超级详细的前端性能优化方案》 — Personal Blog&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/07/25/超级详细的前端性能优化方案/&title=《超级详细的前端性能优化方案》 — LX's  Blog&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -256,7 +352,7 @@
       </li>
       
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/07/25/超级详细的前端性能优化方案/&title=《超级详细的前端性能优化方案》 — Personal Blog&source=" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/07/25/超级详细的前端性能优化方案/&title=《超级详细的前端性能优化方案》 — LX's  Blog&source=" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -301,6 +397,14 @@
 
 
     
+    
+        <aside class="post-widget">
+            <nav class="post-toc-wrap" id="post-toc">
+                <strong>目录</strong>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前端性能优化方案"><span class="post-toc-number">1.</span> <span class="post-toc-text">前端性能优化方案</span></a></li></ol>
+            </nav>
+            <div class="toc-bar"><div>
+        </aside>
     
 </article>
 
@@ -394,7 +498,7 @@
     <ul class="reset share-icons">
       
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/07/25/超级详细的前端性能优化方案/&title=《超级详细的前端性能优化方案》 — Personal Blog&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/07/25/超级详细的前端性能优化方案/&title=《超级详细的前端性能优化方案》 — LX's  Blog&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -406,7 +510,7 @@
       </li>
       
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/07/25/超级详细的前端性能优化方案/&title=《超级详细的前端性能优化方案》 — Personal Blog&source=" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/07/25/超级详细的前端性能优化方案/&title=《超级详细的前端性能优化方案》 — LX's  Blog&source=" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
