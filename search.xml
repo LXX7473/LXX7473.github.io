@@ -3,6 +3,66 @@
   
     
     <entry>
+      <title><![CDATA[Redux的工程化应用]]></title>
+      <url>/2020/05/20/Redux%E7%9A%84%E5%B7%A5%E7%A8%8B%E5%8C%96%E5%BA%94%E7%94%A8/</url>
+      <content type="html"><![CDATA[<h2 id="Redux"><a href="#Redux" class="headerlink" title="Redux"></a>Redux</h2><blockquote>
+<p>是一个非常热门的状态管理工具</p>
+</blockquote>
+<h2 id="工程化的Redux目录结构"><a href="#工程化的Redux目录结构" class="headerlink" title="工程化的Redux目录结构"></a>工程化的Redux目录结构</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">|-store</span><br><span class="line"></span><br><span class="line">    |-index.js  创建redux容器</span><br><span class="line"></span><br><span class="line">    |-action-types.js  宏管理行为标识</span><br><span class="line"></span><br><span class="line">    |-reducers</span><br><span class="line">        |-index.js 最终各个板块合并后的reducer</span><br><span class="line">        |-voteReducer.js  每个板块下的reducer</span><br><span class="line">        </span><br><span class="line">    |-actions  </span><br><span class="line">        voteActions.js</span><br><span class="line">        index.js</span><br></pre></td></tr></table></figure>
+
+<h3 id="工程化操作"><a href="#工程化操作" class="headerlink" title="工程化操作"></a>工程化操作</h3><h4 id="首先：进行redux的安装"><a href="#首先：进行redux的安装" class="headerlink" title="首先：进行redux的安装"></a>首先：进行redux的安装</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i redux</span><br></pre></td></tr></table></figure>
+
+<h4 id="进行store的初始化操作"><a href="#进行store的初始化操作" class="headerlink" title="进行store的初始化操作"></a>进行store的初始化操作</h4><figure class="image-box">
+                <img src="C:\Blog\source\_posts\Redux的工程化应用\1.png" alt title class>
+                <p></p>
+            </figure>
+
+<h4 id="创建单个模块的reducer函数"><a href="#创建单个模块的reducer函数" class="headerlink" title="创建单个模块的reducer函数"></a>创建单个模块的reducer函数</h4><figure class="image-box">
+                <img src="C:\Blog\source\_posts\Redux的工程化应用\2.png" alt title class>
+                <p></p>
+            </figure>
+
+<h4 id="创建action-types"><a href="#创建action-types" class="headerlink" title="创建action-types"></a>创建action-types</h4><figure class="image-box">
+                <img src="C:\Blog\source\_posts\Redux的工程化应用\3.png" alt title class>
+                <p></p>
+            </figure>
+
+<h4 id="整合reducer函数"><a href="#整合reducer函数" class="headerlink" title="整合reducer函数"></a>整合reducer函数</h4><figure class="image-box">
+                <img src="C:\Blog\source\_posts\Redux的工程化应用\4.png" alt title class>
+                <p></p>
+            </figure>
+
+<h4 id="创建单个模块的action"><a href="#创建单个模块的action" class="headerlink" title="创建单个模块的action"></a>创建单个模块的action</h4><figure class="image-box">
+                <img src="C:\Blog\source\_posts\Redux的工程化应用\5.png" alt title class>
+                <p></p>
+            </figure>
+
+<h4 id="整合action"><a href="#整合action" class="headerlink" title="整合action"></a>整合action</h4><figure class="image-box">
+                <img src="C:\Blog\source\_posts\Redux的工程化应用\6.png" alt title class>
+                <p></p>
+            </figure>
+
+
+<h4 id="以上是工程化初始化store的几个步骤"><a href="#以上是工程化初始化store的几个步骤" class="headerlink" title="以上是工程化初始化store的几个步骤"></a>以上是工程化初始化store的几个步骤</h4><h4 id="获取store中的值，以及提醒页面刷新的操作"><a href="#获取store中的值，以及提醒页面刷新的操作" class="headerlink" title="获取store中的值，以及提醒页面刷新的操作"></a>获取store中的值，以及提醒页面刷新的操作</h4><figure class="image-box">
+                <img src="C:\Blog\source\_posts\Redux的工程化应用\7.png" alt title class>
+                <p></p>
+            </figure>
+
+<h4 id="触发dispatch来修改action-type进行对store中的state进行操作"><a href="#触发dispatch来修改action-type进行对store中的state进行操作" class="headerlink" title="触发dispatch来修改action.type进行对store中的state进行操作"></a>触发dispatch来修改action.type进行对store中的state进行操作</h4><figure class="image-box">
+                <img src="C:\Blog\source\_posts\Redux的工程化应用\8.png" alt title class>
+                <p></p>
+            </figure>]]></content>
+      
+        
+        <tags>
+            
+            <tag> React框架 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[学习React过程中犯的低级错误]]></title>
       <url>/2020/05/16/hehe/</url>
       <content type="html"><![CDATA[<h3 id="经过"><a href="#经过" class="headerlink" title="经过"></a>经过</h3><p>今天下午在写一个用react实现的投票案例（小练习）的时候发现的错误-》</p>
