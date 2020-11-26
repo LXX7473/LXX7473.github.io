@@ -180,14 +180,11 @@
 </li>
 </ol>
 <p>这个问题在MDN上也有相应的解释：<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Modules" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Modules</a></p>
-<p>大致意思就是： 当本地测试的时候，如果你通过本地加载Html 文件 (比如一个 file:// 路径的文件), 你将会遇到 CORS 错误，因为Javascript 模块安全性需要。 </p>
+<p>大致意思就是： 当本地测试的时候，如果你通过本地加载Html 文件 (比如一个 file:// 路径的文件), 你将会遇到<code>CORS</code>错误，因为<code>Javascript</code>模块安全性需要。 </p>
 <p>所以你需要通过一个服务器来测试。</p>
 <img src="/2020/11/26/Javascript中的模块化/13.png" title="This is an example image">
+<img src="/2020/11/26/Javascript中的模块化/14_1.png" title="This is an example image">
 
-<figure class="image-box">
-                <img src="//yoursite.com/2020/11/26/Javascript中的模块化/Users\lixiang17\AppData\Roaming\Typora\typora-user-images\image-20201120165255145.png" alt="image-20201120165255145" title class>
-                <p>image-20201120165255145</p>
-            </figure>
 
 <h4 id="export关键字"><a href="#export关键字" class="headerlink" title="export关键字"></a>export关键字</h4><p><code>export</code>关键字将一个模块中的变量、函数、类等导出；</p>
 <p> 我们希望将其他中内容全部导出，它可以有如下的方式：</p>
@@ -201,7 +198,7 @@
 <ul>
 <li>方式一：<code>import {标识符列表} from &#39;模块&#39;</code>；  注意：这里的{}也不是一个对象，里面只是存放导入的标识符列表内容；</li>
 <li>方式二：导入时给标识符起别名</li>
-<li>方式三：通过 * 将模块功能放到一个模块功能对象（a module object）上</li>
+<li>方式三：通过 * 将模块功能放到一个模块功能对象<code>（a module object）</code>上</li>
 </ul>
 <img src="/2020/11/26/Javascript中的模块化/14.png" title="This is an example image">
 
