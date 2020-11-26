@@ -48,7 +48,7 @@
           <img src="/img/headhead.jpg">
         </a>
         <hgroup class="introduce">
-          <h5 class="nickname">不想gg</h5>
+          <h5 class="nickname">脑壳疼</h5>
           <a href="mailto:LXX7473@163.com" title="LXX7473@163.com" class="mail">
             
               <span>L</span>
@@ -213,7 +213,7 @@
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
             
-            <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p><strong>写笔记的本意是对自己所学知识的一个总结，目前文笔不算成熟，可能有些知识点表达的不是很准确或有误，欢迎批评指正~~</strong></p>
+            <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p><strong>写笔记的本意是对自己所学知识的一个总结，目前文笔和技术都不算成熟，可能有些知识点表达的不是很准确或有误，欢迎批评指正~~</strong></p>
 <h2 id="Javascript模块化开发"><a href="#Javascript模块化开发" class="headerlink" title="Javascript模块化开发"></a>Javascript模块化开发</h2><p>​    众所周知，早期的<code>Javascript</code>大多情况被用来做表单验证、动画实现，通常情况下短短几行代码就可以搞定。并且都被编写在<code>script标签</code>里面。<br>​    但是随着前端和<code>JavaScript</code>的快速发展，<code>JavaScript</code>代码变得越来越复杂，从<code>Ajax</code>的出现，到后来的前后端分离，再到现在的SPA应用，前端页面正在变的越来越复杂，而没有”模块化“这件事，在很长一段时间都是<code>Javascript</code>的硬伤</p>
 <h4 id="没有模块化会引发的问题"><a href="#没有模块化会引发的问题" class="headerlink" title="没有模块化会引发的问题"></a>没有模块化会引发的问题</h4><ul>
 <li>代码多，命名冲突概率大</li>
@@ -341,10 +341,10 @@
 <p>ps:(图中的<code>paths</code>，是<code>module</code>中的属性)</p>
 <a rel=Javascript中的模块化(更新中~) href="/2020/11/26/Javascript中的模块化/9.png" title="This is an example image" data-fancybox="images"><img src="/2020/11/26/Javascript中的模块化/9.png" title="This is an example image"></a>
 
-<h4 id="情况四（特殊）：优先从缓存加载"><a href="#情况四（特殊）：优先从缓存加载" class="headerlink" title="情况四（特殊）：优先从缓存加载"></a>情况四（特殊）：优先从缓存加载</h4><p>除了以上三种情况之外，我们还需要知晓一点，与前端浏览器会缓存静态脚本文件以提高性能一样，Node对引入过的模块都会进行缓存，以减少二次引用的开销，</p>
+<h4 id="情况四（特殊）：优先从缓存加载"><a href="#情况四（特殊）：优先从缓存加载" class="headerlink" title="情况四（特殊）：优先从缓存加载"></a>情况四（特殊）：优先从缓存加载</h4><p>除了以上三种情况之外，我们还需要知晓一点，与前端浏览器会缓存静态脚本文件以提高性能一样，<code>Node</code>对引入过的模块都会进行缓存，以减少二次引用的开销，</p>
 <h4 id="几种情况的加载速度对比"><a href="#几种情况的加载速度对比" class="headerlink" title="几种情况的加载速度对比"></a>几种情况的加载速度对比</h4><ol>
-<li>不管是核心模块还是文件模块，require对于相同模块的二次加载都一律采用<strong>缓存加载优先</strong>的方式，所以属于第一优先级。</li>
-<li>而Node核心模块在Node源代码编译过程中，编译进了二进制执行文件</li>
+<li>不管是核心模块还是文件模块，<code>require</code>对于相同模块的二次加载都一律采用<strong>缓存加载优先</strong>的方式，所以属于第一优先级。</li>
+<li>而<code>Node</code>核心模块在<code>Node</code>源代码编译过程中，编译进了二进制执行文件</li>
 <li>以路径形式的文件模块，以路径作为路引进行查找，由于给定了明确的文件位置，所以也可以节约大量的时间，慢于核心模块</li>
 <li>由于既不是核心模块，也没有详细的地址，所以这类文件查找起来是最费时的</li>
 </ol>
@@ -431,11 +431,11 @@
 <li>方式一：在<code>package.json</code>中配置 <code>type: module</code></li>
 <li>方式二：文件以 <code>.mjs</code> 结尾，表示使用的是<code>ES Module</code>； </li>
 </ul>
-<h4 id="ES-Module加载过程"><a href="#ES-Module加载过程" class="headerlink" title="ES Module加载过程"></a>ES Module加载过程</h4><p><code>ES Module</code>加载js文件的过程是编译（解析）时加载的，并且是异步的</p>
+<h4 id="ES-Module加载过程"><a href="#ES-Module加载过程" class="headerlink" title="ES Module加载过程"></a>ES Module加载过程</h4><p><code>ES Module</code>加载<code>js文件</code>的过程是编译（解析）时加载的，并且是异步的</p>
 <p>异步的意味着：<code>js引擎</code>在遇到<code>import</code>时会去获取这个<code>js</code>文件，但是这个获取的过程是异步的，并不会阻塞主线程继续执行； </p>
 <ul>
 <li>也就是说设置了<code>type=module</code>的代码，相当于在<code>script标签上</code>也加上了 <code>async</code>属性； </li>
-<li>如果我们后面有普通的script标签以及对应的代码，那么<code>ES Module</code>对应的js文件和代码不会阻塞它们的执行</li>
+<li>如果我们后面有普通的<code>script标签</code>以及对应的代码，那么<code>ES Module</code>对应的js文件和代码不会阻塞它们的执行</li>
 </ul>
 <a rel=Javascript中的模块化(更新中~) href="/2020/11/26/Javascript中的模块化/16.png" title="This is an example image" data-fancybox="images"><img src="/2020/11/26/Javascript中的模块化/16.png" title="This is an example image"></a>
 
@@ -536,8 +536,8 @@
     </div>
     <footer>
         <a href="http://yoursite.com">
-            <img src="/img/headhead.jpg" alt="不想gg">
-            不想gg
+            <img src="/img/headhead.jpg" alt="脑壳疼">
+            脑壳疼
         </a>
     </footer>
 </blockquote>
@@ -658,7 +658,7 @@
     <div class="bottom">
         <p>
             <span>
-                不想gg &copy; 2017 - 2020
+                脑壳疼 &copy; 2017 - 2020
             </span>
         		
            	
