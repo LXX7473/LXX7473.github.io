@@ -5,7 +5,7 @@
     <entry>
       <title><![CDATA[Javascript中的模块化]]></title>
       <url>/2020/11/26/Javascript%E4%B8%AD%E7%9A%84%E6%A8%A1%E5%9D%97%E5%8C%96/</url>
-      <content type="html"><![CDATA[<h2 id="javascript模块化开发"><a href="#javascript模块化开发" class="headerlink" title="javascript模块化开发"></a>javascript模块化开发</h2><p>​    众所周知，早期的javascript大多情况被用来做表单验证或动画实现，通常情况下短短几行代码就可以搞定。一般情况下都被写在<code>&lt;script&gt;</code>标签里面。<br>​    但是随着前端和JavaScript的快速发展，JavaScript代码变得越来越复杂，从Ajax的出现，到后来的前后端分离，再到现在的SPA应用，前端页面正在变的越来越复杂，而没有”模块化“这件事，在很长一段时间都是javascript的硬伤</p>
+      <content type="html"><![CDATA[<h2 id="javascript模块化开发"><a href="#javascript模块化开发" class="headerlink" title="javascript模块化开发"></a>javascript模块化开发</h2><p>​    众所周知，早期的javascript大多情况被用来做表单验证或动画实现，通常情况下短短几行代码就可以搞定。一般情况下都被写在<code>script</code>标签里面。<br>​    但是随着前端和JavaScript的快速发展，JavaScript代码变得越来越复杂，从Ajax的出现，到后来的前后端分离，再到现在的SPA应用，前端页面正在变的越来越复杂，而没有”模块化“这件事，在很长一段时间都是javascript的硬伤</p>
 <h4 id="没有模块化会引发的问题"><a href="#没有模块化会引发的问题" class="headerlink" title="没有模块化会引发的问题"></a>没有模块化会引发的问题</h4><ol>
 <li>我必须记得每一个模块中返回对象的命名，才能在其他模块使用过程中正确的使用； </li>
 <li>代码写起来混乱不堪，每个文件中的代码都需要包裹在一个匿名函数中来编写；</li>
