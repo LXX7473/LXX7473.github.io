@@ -213,13 +213,14 @@
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
             
-            <h2 id="javascript模块化开发"><a href="#javascript模块化开发" class="headerlink" title="javascript模块化开发"></a>javascript模块化开发</h2><p>​    众所周知，早期的javascript大多情况被用来做表单验证或动画实现，通常情况下短短几行代码就可以搞定。一般情况下都被写在<code>script</code>标签里面。<br>​    但是随着前端和JavaScript的快速发展，JavaScript代码变得越来越复杂，从Ajax的出现，到后来的前后端分离，再到现在的SPA应用，前端页面正在变的越来越复杂，而没有”模块化“这件事，在很长一段时间都是javascript的硬伤</p>
-<h4 id="没有模块化会引发的问题"><a href="#没有模块化会引发的问题" class="headerlink" title="没有模块化会引发的问题"></a>没有模块化会引发的问题</h4><ol>
-<li>我必须记得每一个模块中返回对象的命名，才能在其他模块使用过程中正确的使用； </li>
-<li>代码写起来混乱不堪，每个文件中的代码都需要包裹在一个匿名函数中来编写；</li>
-<li>第三，在没有合适的规范情况下，每个人、每个公司都可能会任意命名、甚至出现模块名称相同的情况</li>
-</ol>
-<h4 id="前端众多的模块化解决方案"><a href="#前端众多的模块化解决方案" class="headerlink" title="前端众多的模块化解决方案"></a>前端众多的模块化解决方案</h4><p>JavaScript社区为了解决上面的问题，涌现出一系列好用的规范</p>
+            <h2 id="javascript模块化开发"><a href="#javascript模块化开发" class="headerlink" title="javascript模块化开发"></a>javascript模块化开发</h2><p>​    众所周知，早期的<code>Javascript</code>大多情况被用来做表单验证、动画实现，通常情况下短短几行代码就可以搞定。并且都被写在<code>script标签</code>里面。<br>​    但是随着前端和<code>JavaScript</code>的快速发展，<code>JavaScript</code>代码变得越来越复杂，从<code>Ajax</code>的出现，到后来的前后端分离，再到现在的SPA应用，前端页面正在变的越来越复杂，而没有”模块化“这件事，在很长一段时间都是<code>Javascript</code>的硬伤</p>
+<h4 id="没有模块化会引发的问题"><a href="#没有模块化会引发的问题" class="headerlink" title="没有模块化会引发的问题"></a>没有模块化会引发的问题</h4><ul>
+<li>代码多，命名冲突概率大</li>
+<li>代码冗余，请求过多拖慢速度</li>
+<li>文件间依赖增多，易出现引用错误，导致代码运行出错</li>
+<li>修改或者改版时，要去成百上千行代码里找，难维护<br>综上所述，不论是从开发还是体验角度，都需要解决方案。<h4 id="前端众多的模块化解决方案"><a href="#前端众多的模块化解决方案" class="headerlink" title="前端众多的模块化解决方案"></a>前端众多的模块化解决方案</h4></li>
+</ul>
+<p>JavaScript社区为了解决上面的问题，曾涌现出一系列好用的规范</p>
 <p>例如：</p>
 <ul>
 <li>CommonJs</li>
@@ -228,27 +229,27 @@
 <li>ES module</li>
 </ul>
 <p>由于AMD和CMD现在应用的地方并不是很多，所以本文主要针对<strong>CommonJS</strong>的模块化进行介绍，也会对<strong>ES Module</strong>进行简要介绍</p>
-<h2 id="CommonJS和Node"><a href="#CommonJS和Node" class="headerlink" title="CommonJS和Node"></a>CommonJS和Node</h2><p> 我们需要知道<code>CommonJS</code>是一个规范，最初提出来是在浏览器以外的地方使用，并且当时被命名为<code>ServerJS</code>，后来为了 体现它的广泛性，修改为<code>CommonJS</code>，平时我们也会简称为<code>CJS</code>。</p>
+<h2 id="CommonJS和Node"><a href="#CommonJS和Node" class="headerlink" title="CommonJS和Node"></a>CommonJS和Node</h2><p> 我们需要知道<code>CommonJS</code>是一个规范，最初提出来是在浏览器以外的地方使用，并且当时被命名为<code>ServerJS</code>，后来为了体现它的广泛性，修改为<code>CommonJS</code>，平时我们也会简称为<code>CJS</code>。</p>
 <ul>
 <li><code>Node</code>是<code>CommonJS</code>在服务器端一个具有代表性的实现； </li>
 <li><code>Browserify</code>是<code>CommonJS</code>在浏览器中的一种实现；</li>
 <li><code>webpack</code>打包工具具备对<code>CommonJS</code>的支持和转换；</li>
 </ul>
-<p>由于Node对CommonJS进行了支持和实现，所以我们可以在开发中很方便的进行模块化开发，我们要特别注意两点</p>
+<p>由于<code>Node</code>对<code>CommonJS</code>进行了支持和实现，所以我们可以在开发中很方便的进行模块化开发，但要特别注意两点</p>
 <ul>
-<li>在Node中每一个js文件都是一个单独的模块；</li>
-<li>这个模块中包括CommonJS规范的核心变量：exports、module.exports、require；</li>
+<li>在<code>Node</code>中每一个<code>JS</code>文件都是一个单独的模块；</li>
+<li>这个模块中包括<code>CommonJS</code>规范的核心变量：<code>exports</code>、<code>module.exports</code>、<code>require</code>；</li>
 </ul>
 <h4 id="Node模块化的导入和导出"><a href="#Node模块化的导入和导出" class="headerlink" title="Node模块化的导入和导出"></a>Node模块化的导入和导出</h4><p>其中<code>exports</code>和<code>module.exports</code>可以负责对模块中的内容进行导出； </p>
 <p><code>require</code>函数可以帮助我们导入其他模块（自定义模块、系统模块、第三方库模块）中的内容；</p>
-<h4 id="exports与require"><a href="#exports与require" class="headerlink" title="exports与require"></a>exports与require</h4><p>下图短短几行代码，就是对Node模块化的体现~</p>
-<p>exports的本质是一个对象（如图）。</p>
-<p>在1.js文件中</p>
+<h4 id="exports与require"><a href="#exports与require" class="headerlink" title="exports与require"></a>exports与require</h4><p>下图短短几行代码，就是对<code>Node</code>模块化的体现~</p>
+<p><code>exports</code>的本质是一个对象（如下图）。</p>
+<p>在<code>1.js文件</code>中</p>
 <ul>
-<li>通过.的方式动态的为exports这个对象添加属性，将该对象导出该模块</li>
+<li>通过<code>.</code>的方式动态的为exports这个对象添加属性，将该对象导出该模块</li>
 <li>蓝色框中代表的是被导出的属性名，<strong>可以为任意值。</strong></li>
 </ul>
-<p>在2.js文件中</p>
+<p>在<code>2.js文件</code>中</p>
 <ul>
 <li>通过data来对require函数的返回值进行接收，<strong>实际上：接受到的data值实际就是导出的exports对象</strong>！相信很多人看到这个结论都是疑惑的。那我们不妨论证一下这个观点。</li>
 </ul>
@@ -256,9 +257,9 @@
 
 <h4 id="验证require函数的返回值是否与exports相等"><a href="#验证require函数的返回值是否与exports相等" class="headerlink" title="验证require函数的返回值是否与exports相等"></a>验证require函数的返回值是否与exports相等</h4><p>如上图所示：</p>
 <ol>
-<li>首先我们先将name,age两个变量分别导出，然后在2.js中进行引入，</li>
-<li>打印结果，然后在1s之后给data的name属性重新赋值</li>
-<li>在2s后重新打印1.js中exports这个对象的值，</li>
+<li>首先我们先将name,age两个变量分别导出，然后在<code>2.js</code>中进行引入，</li>
+<li>打印结果，然后在1s之后给<code>data</code>的<code>name</code>属性重新赋值</li>
+<li>在2s后重新打印<code>1.js</code>中<code>exports</code>这个对象的值，</li>
 <li>如果exports这个对象的name属性被重新赋值，就说明require函数的返回值与exports这个对象指向的是同一个地址</li>
 </ol>
 <a rel=Javascript中的模块化 href="/2020/11/26/Javascript中的模块化/2.png" title="This is an example image" data-fancybox="images"><img src="/2020/11/26/Javascript中的模块化/2.png" title="This is an example image"></a>
@@ -269,7 +270,7 @@
 
 
 
-<h4 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h4><p>exports被重新赋值，说明exports对象和require函数的返回值指向同一个引用地址（浅拷贝）。</p>
+<h4 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h4><p><code>exports</code>被重新赋值，说明<code>exports</code>对象和<code>require</code>函数的返回值指向同一个引用地址（浅拷贝）。</p>
 <p>到这里我们已经看似完成了模块化的两个关键因素，导入和导出，那么<code>module.exports</code>又是什么呢？它和<code>exports</code>又有什么区别呢？让我们接着往下看。</p>
 <h4 id="module-exports"><a href="#module-exports" class="headerlink" title="module.exports"></a>module.exports</h4><p>首先，我们要知道<code>CommonJS规范</code>中是没有<code>module.exports</code>这个概念的，</p>
 <p>Node在实现的过程中使用的是<code>Module类</code>，每一个模块都是<code>Module</code>的一个实例，我们可以尝试打印一下这个属性（如下图所示），它的默认值是<code>{}</code>,</p>
@@ -280,15 +281,15 @@
 
 
 
-<p>但是有一件事还没有确定，那就是module.exports和exports到底是谁真正的实现了Node的模块化导出，我们可以做一个实验，<strong>注意看下面两段代码</strong>！！！</p>
+<p>但是有一件事还没有确定，那就是<code>module.exports</code>和<code>exports</code>到底是谁真正的实现了<code>Node</code>的模块化导出，我们可以做一个实验，<strong>注意看下面两段代码</strong>！！！</p>
 <a rel=Javascript中的模块化 href="/2020/11/26/Javascript中的模块化/6.png" title="This is an example image" data-fancybox="images"><img src="/2020/11/26/Javascript中的模块化/6.png" title="This is an example image"></a>
 
 <h5 id="第一种操作："><a href="#第一种操作：" class="headerlink" title="第一种操作："></a>第一种操作：</h5><ol>
 <li>给<code>module.exports</code>赋值为<code>{}</code></li>
-<li>通过exports进行导出</li>
+<li>通过<code>exports</code>进行导出</li>
 <li>输出结果为{}</li>
 </ol>
-<p>说明虽然exports在后面进行导出，但仍然被前面的<code>module.exports</code>给覆盖掉了</p>
+<p>说明虽然<code>exports</code>在后面进行导出，但仍然被前面的<code>module.exports</code>给覆盖掉了</p>
 <a rel=Javascript中的模块化 href="/2020/11/26/Javascript中的模块化/7.png" title="This is an example image" data-fancybox="images"><img src="/2020/11/26/Javascript中的模块化/7.png" title="This is an example image"></a>
 
 <h5 id="第二种操作"><a href="#第二种操作" class="headerlink" title="第二种操作:"></a>第二种操作:</h5><ol>
@@ -296,7 +297,7 @@
 <li>用<code>module.exports</code>导出变量，</li>
 <li>仍然可以导出成功变量。</li>
 </ol>
-<h4 id="为什么第一种操作中，exports会被module-exports覆盖掉？"><a href="#为什么第一种操作中，exports会被module-exports覆盖掉？" class="headerlink" title="为什么第一种操作中，exports会被module.exports覆盖掉？"></a>为什么第一种操作中，exports会被module.exports覆盖掉？</h4><p>结合图片（图没画好。。）我们可以看出，第二步的时候module.exports改变了引用地址，所以不管exports的值再怎么变化，也不会影响导出的结果。</p>
+<h4 id="为什么第一种操作中，exports会被module-exports覆盖掉？"><a href="#为什么第一种操作中，exports会被module-exports覆盖掉？" class="headerlink" title="为什么第一种操作中，exports会被module.exports覆盖掉？"></a>为什么第一种操作中，exports会被module.exports覆盖掉？</h4><p>结合图片（图没画好。。）我们可以看出，第二步的时候<code>module.exports</code>改变了引用地址，所以不管<code>exports</code>的值再怎么变化，也不会影响导出的结果。</p>
 <a rel=Javascript中的模块化 href="/2020/11/26/Javascript中的模块化/8.png" title="This is an example image" data-fancybox="images"><img src="/2020/11/26/Javascript中的模块化/8.png" title="This is an example image"></a>
 
 
@@ -323,7 +324,7 @@
 </ol>
 </li>
 </ol>
-<p>**第二步：没有找到对应的文件，将X作为一个目录</p>
+<p><strong>第二步：没有找到对应的文件，将X作为一个目录</strong></p>
 <ul>
 <li><p>查找目录下面的index文件</p>
 <ol>
