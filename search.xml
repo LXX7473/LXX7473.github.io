@@ -3,9 +3,10 @@
   
     
     <entry>
-      <title><![CDATA[Javascript中的模块化]]></title>
+      <title><![CDATA[Javascript中的模块化(更新中~)]]></title>
       <url>/2020/11/26/Javascript%E4%B8%AD%E7%9A%84%E6%A8%A1%E5%9D%97%E5%8C%96/</url>
-      <content type="html"><![CDATA[<h2 id="javascript模块化开发"><a href="#javascript模块化开发" class="headerlink" title="javascript模块化开发"></a>javascript模块化开发</h2><p>​    众所周知，早期的<code>Javascript</code>大多情况被用来做表单验证、动画实现，通常情况下短短几行代码就可以搞定。并且都被写在<code>script标签</code>里面。<br>​    但是随着前端和<code>JavaScript</code>的快速发展，<code>JavaScript</code>代码变得越来越复杂，从<code>Ajax</code>的出现，到后来的前后端分离，再到现在的SPA应用，前端页面正在变的越来越复杂，而没有”模块化“这件事，在很长一段时间都是<code>Javascript</code>的硬伤</p>
+      <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p><strong>写笔记的本意是对自己所学知识的一个总结，目前文笔不算成熟，可能有些知识点表达的不是很准确或有误，欢迎批评指正~~</strong></p>
+<h2 id="Javascript模块化开发"><a href="#Javascript模块化开发" class="headerlink" title="Javascript模块化开发"></a>Javascript模块化开发</h2><p>​    众所周知，早期的<code>Javascript</code>大多情况被用来做表单验证、动画实现，通常情况下短短几行代码就可以搞定。并且都被编写在<code>script标签</code>里面。<br>​    但是随着前端和<code>JavaScript</code>的快速发展，<code>JavaScript</code>代码变得越来越复杂，从<code>Ajax</code>的出现，到后来的前后端分离，再到现在的SPA应用，前端页面正在变的越来越复杂，而没有”模块化“这件事，在很长一段时间都是<code>Javascript</code>的硬伤</p>
 <h4 id="没有模块化会引发的问题"><a href="#没有模块化会引发的问题" class="headerlink" title="没有模块化会引发的问题"></a>没有模块化会引发的问题</h4><ul>
 <li>代码多，命名冲突概率大</li>
 <li>代码冗余，请求过多拖慢速度</li>
@@ -33,26 +34,26 @@
 <li>这个模块中包括<code>CommonJS</code>规范的核心变量：<code>exports</code>、<code>module.exports</code>、<code>require</code>；</li>
 </ul>
 <h4 id="Node模块化的导入和导出"><a href="#Node模块化的导入和导出" class="headerlink" title="Node模块化的导入和导出"></a>Node模块化的导入和导出</h4><p>其中<code>exports</code>和<code>module.exports</code>可以负责对模块中的内容进行导出； </p>
-<p><code>require</code>函数可以帮助我们导入其他模块（自定义模块、系统模块、第三方库模块）中的内容；</p>
+<p><code>require</code>函数可以帮助我们导入其他模块，包括：（自定义模块、系统模块、第三方库模块）；</p>
 <h4 id="exports与require"><a href="#exports与require" class="headerlink" title="exports与require"></a>exports与require</h4><p>下图短短几行代码，就是对<code>Node</code>模块化的体现~</p>
 <p><code>exports</code>的本质是一个对象（如下图）。</p>
 <p>在<code>1.js文件</code>中</p>
 <ul>
-<li>通过<code>.</code>的方式动态的为exports这个对象添加属性，将该对象导出该模块</li>
+<li>通过<code>.</code>的方式动态的为<code>exports</code>这个对象添加属性，将该对象导出该模块</li>
 <li>蓝色框中代表的是被导出的属性名，<strong>可以为任意值。</strong></li>
 </ul>
 <p>在<code>2.js文件</code>中</p>
 <ul>
-<li>通过data来对require函数的返回值进行接收，<strong>实际上：接受到的data值实际就是导出的exports对象</strong>！相信很多人看到这个结论都是疑惑的。那我们不妨论证一下这个观点。</li>
+<li>通过<code>data</code>来对<code>require函数</code>的返回值进行接收，<strong>实际上：接受到的data值实际就是导出的exports对象</strong>！相信很多人看到这个结论都是疑惑的。那我们不妨论证一下这个观点。</li>
 </ul>
 <img src="/2020/11/26/Javascript中的模块化/1.png" title="This is an example image">
 
 <h4 id="验证require函数的返回值是否与exports相等"><a href="#验证require函数的返回值是否与exports相等" class="headerlink" title="验证require函数的返回值是否与exports相等"></a>验证require函数的返回值是否与exports相等</h4><p>如上图所示：</p>
 <ol>
-<li>首先我们先将name,age两个变量分别导出，然后在<code>2.js</code>中进行引入，</li>
+<li>首先我们先将<code>name</code>,<code>age</code>两个变量分别导出，然后在<code>2.js</code>中进行引入，</li>
 <li>打印结果，然后在1s之后给<code>data</code>的<code>name</code>属性重新赋值</li>
 <li>在2s后重新打印<code>1.js</code>中<code>exports</code>这个对象的值，</li>
-<li>如果exports这个对象的name属性被重新赋值，就说明require函数的返回值与exports这个对象指向的是同一个地址</li>
+<li>如果<code>exports</code>这个对象的<code>name</code>属性被重新赋值，就说明<code>require函数</code>的返回值与<code>exports</code>这个对象指向的是同一个地址</li>
 </ol>
 <img src="/2020/11/26/Javascript中的模块化/2.png" title="This is an example image">
 
@@ -68,7 +69,7 @@
 <p>Node在实现的过程中使用的是<code>Module类</code>，每一个模块都是<code>Module</code>的一个实例，我们可以尝试打印一下这个属性（如下图所示），它的默认值是<code>{}</code>,</p>
 <img src="/2020/11/26/Javascript中的模块化/4.png" title="This is an example image">
 
-<p>在很多时候我们发现<code>module.exports={name}</code>和<code>exports.name=name</code>这两种导出方式，都可以实现，除了语法之外，二者几乎并无区别，都完成了导出这件事，并且通过下图这种方式我们还可以得知module.exports===exports===2.js中的data，三者指向同一个引用地址</p>
+<p>在很多时候我们发现<code>module.exports={name}</code>和<code>exports.name=name</code>这两种导出方式，都可以实现，除了语法之外，二者几乎并无区别，都完成了导出这件事，并且通过下图这种方式我们还可以得知<code>module.exports===exports===2.js</code>中的<code>data</code>，三者指向同一个引用地址</p>
 <img src="/2020/11/26/Javascript中的模块化/5.png" title="This is an example image">
 
 
@@ -85,7 +86,7 @@
 <img src="/2020/11/26/Javascript中的模块化/7.png" title="This is an example image">
 
 <h5 id="第二种操作"><a href="#第二种操作" class="headerlink" title="第二种操作:"></a>第二种操作:</h5><ol>
-<li>先给exports的值设置为{}，</li>
+<li>先给<code>exports</code>的值设置为{}，</li>
 <li>用<code>module.exports</code>导出变量，</li>
 <li>仍然可以导出成功变量。</li>
 </ol>
@@ -98,8 +99,8 @@
 
 <h4 id="结论-1"><a href="#结论-1" class="headerlink" title="结论"></a>结论</h4><p><strong>所以在Node中真正实现导出的是<code>module.exports</code></strong>,而不是<strong><code>exports</code></strong>  ，也就是<strong><code>exports=module.exports</code></strong>,并且这个操作是在模块开始加载的时候就被执行了。</p>
 <h2 id="require中的细节"><a href="#require中的细节" class="headerlink" title="require中的细节"></a>require中的细节</h2><p>介绍了这么多的模块的导出，接下来讲一下<code>require</code>导入的细节，我们知道<code>require</code>是一个函数，可以帮助我们引入一个文件（模块）中导入的对象，那么<code>require</code>的查找规则到底是怎么样的呢？</p>
-<p>暂且假定require(X)</p>
-<h4 id="情况一：核心模块"><a href="#情况一：核心模块" class="headerlink" title="情况一：核心模块"></a>情况一：核心模块</h4><p>X是一个核心模块，比如path，http</p>
+<p>暂且假定<code>require(X)</code></p>
+<h4 id="情况一：核心模块"><a href="#情况一：核心模块" class="headerlink" title="情况一：核心模块"></a>情况一：核心模块</h4><p>X是一个核心模块，比如<code>path</code>，<code>http</code></p>
 <ul>
 <li>直接返回核心模块停止查找</li>
 </ul>
@@ -110,26 +111,26 @@
 <li>如果有后缀名，直接按照文件路径查找对应的文件</li>
 <li>如果没有后缀名，会按照如下顺序<ol>
 <li>直接查找文件X（无后缀）</li>
-<li>查找X.js文件</li>
-<li>查找X.json文件</li>
-<li>查找X.node文件</li>
+<li>查找<code>X.js文件</code></li>
+<li>查找<code>X.json文件</code></li>
+<li>查找<code>X.node文件</code></li>
 </ol>
 </li>
 </ol>
 <p><strong>第二步：没有找到对应的文件，将X作为一个目录</strong></p>
 <ul>
-<li><p>查找目录下面的index文件</p>
+<li><p>查找目录下面的<code>index</code>文件</p>
 <ol>
-<li>查找X/index.js文件 </li>
-<li>查找X/index.json文件 </li>
-<li>查找X/index.node文件 </li>
+<li>查找<code>X/index.js文件</code></li>
+<li>查找<code>X/index.json文件</code></li>
+<li>查找<code>X/index.node文件</code> </li>
 </ol>
-<p>如果仍然没找到，那么报错not found</p>
+<p>如果仍然没找到，那么报错<code>not found</code></p>
 </li>
 </ul>
 <h4 id="情况三：自定义模块"><a href="#情况三：自定义模块" class="headerlink" title="情况三：自定义模块"></a>情况三：自定义模块</h4><p>直接是一个X（没有路径），并且X不是一个核心模块，也可以称为<strong>自定义模块</strong></p>
-<p>查找顺序：首先查找当前目录下的node_modules目录，然后查找父级….沿路径向上依次递归，直到根目录下的node_modules目录，该查找方式与javascript的原型链/作用域链查找方式十分类似，由此也可以看出，模块的路径越深，模块查找的耗时也就越多，这也是自定义模块加载速度是最慢的原因。</p>
-<p>ps:(图中的paths，是module中的属性)</p>
+<p>查找顺序：首先查找当前目录下的node_modules目录，然后查找父级….沿路径向上依次递归，直到根目录下的<code>node_modules</code>目录，该查找方式与<code>Javascript</code>的原型链/作用域链查找方式十分类似，由此也可以看出，模块的路径越深，模块查找的耗时也就越多，这也是自定义模块加载速度是最慢的原因。</p>
+<p>ps:(图中的<code>paths</code>，是<code>module</code>中的属性)</p>
 <img src="/2020/11/26/Javascript中的模块化/9.png" title="This is an example image">
 
 <h4 id="情况四（特殊）：优先从缓存加载"><a href="#情况四（特殊）：优先从缓存加载" class="headerlink" title="情况四（特殊）：优先从缓存加载"></a>情况四（特殊）：优先从缓存加载</h4><p>除了以上三种情况之外，我们还需要知晓一点，与前端浏览器会缓存静态脚本文件以提高性能一样，Node对引入过的模块都会进行缓存，以减少二次引用的开销，</p>
@@ -150,29 +151,29 @@
 
 <ul>
 <li>这个其实是一种数据结构：图结构； </li>
-<li>图结构在遍历的过程中，有深度优先搜索（DFS, depth first search）和广度优先搜索（BFS, breadth first search）；</li>
-<li>Node采用的是深度优先算法：aaa -&gt; ccc -&gt; ddd -&gt; eee -&gt;bbb</li>
+<li>图结构在遍历的过程中，有深度优先搜索<code>（DFS, depth first search）</code>和广度优先搜索<code>（BFS, breadth first search）</code>；</li>
+<li><code>Node</code>采用的是深度优先算法：<code>aaa -&gt; ccc -&gt; ddd -&gt; eee -&gt;bbb</code></li>
 </ul>
 <p><strong>所以根据上图，我们知道同一个模块不会被重复加载，并且在模块被循环引用时，会根据深度优先进行引入</strong></p>
 <h4 id="问题：模块被多次引入时-为什么只会加载运行一次呢？"><a href="#问题：模块被多次引入时-为什么只会加载运行一次呢？" class="headerlink" title="问题：模块被多次引入时  为什么只会加载运行一次呢？"></a>问题：模块被多次引入时  为什么只会加载运行一次呢？</h4><ul>
-<li>这是因为每个模块对象module都有一个属性：loaded。 </li>
-<li>当load 为false表示还没有加载，为true表示已经加载；</li>
+<li>这是因为每个模块对象<code>module</code>都有一个属性：<code>loaded</code>。 </li>
+<li>当<code>load</code>为<code>false</code>表示还没有加载，为<code>true</code>表示已经加载；</li>
 </ul>
 <h4 id="CommonJS规范缺点"><a href="#CommonJS规范缺点" class="headerlink" title="CommonJS规范缺点"></a>CommonJS规范缺点</h4><img src="/2020/11/26/Javascript中的模块化/12.png" title="This is an example image">
 
-<p>由图可知在2.js中引用了1.js，而打印的顺序是先执行1.js，之后再执行2.js这说明CommonJS加载模块是同步进行的</p>
+<p>由图可知在<code>2.js</code>中引用了<code>1.js</code>，而打印的顺序是先执行<code>1.js</code>，之后再执行<code>2.js</code>这说明<code>CommonJS</code>加载模块是同步进行的</p>
 <ul>
 <li>这个在服务器不会有什么问题，因为服务器加载的js文件都是本地文件，加载速度非常快； </li>
 <li>但是在客户端的话情况就不会很乐观，这意味着后面的js代码无法继续正常执行，即使是一些简单的DOM操作</li>
 </ul>
-<p>所以在浏览器中我们通常不使用CommonJS规范，一般使用ES Module进行模块化开发</p>
-<h2 id="ES-Module的特点"><a href="#ES-Module的特点" class="headerlink" title="ES Module的特点"></a>ES Module的特点</h2><p> ES Module模块采用export和import<strong>关键字</strong>来实现模块化：</p>
+<p>所以在浏览器中我们通常不使用<code>CommonJS规范</code>，一般使用<code>ES Module</code>进行模块化开发</p>
+<h2 id="ES-Module的特点"><a href="#ES-Module的特点" class="headerlink" title="ES Module的特点"></a>ES Module的特点</h2><p> <code>ES Module</code>模块采用<code>export</code>和<code>import</code><strong>关键字</strong>来实现模块化：</p>
 <ul>
-<li>export负责将模块内的内容导出；</li>
-<li>import负责从其他模块导入内容；</li>
+<li><code>export</code>负责将模块内的内容导出；</li>
+<li><code>import</code>负责从其他模块导入内容；</li>
 </ul>
 <h4 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h4><ol>
-<li><p>采用<code>ES Module</code>将自动采用严格模式：use strict </p>
+<li><p>采用<code>ES Module</code>将自动采用严格模式：<code>use strict</code> </p>
 <p>如果你不熟悉严格模式可以简单看一下MDN上的解析： <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Strict_mode" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Strict_mode</a></p>
 </li>
 <li><p>当你在浏览器中直接打开这段代码的时候，会发生跨域。</p>
@@ -188,17 +189,17 @@
                 <p>image-20201120165255145</p>
             </figure>
 
-<h4 id="export关键字"><a href="#export关键字" class="headerlink" title="export关键字"></a>export关键字</h4><p>export关键字将一个模块中的变量、函数、类等导出；</p>
+<h4 id="export关键字"><a href="#export关键字" class="headerlink" title="export关键字"></a>export关键字</h4><p><code>export</code>关键字将一个模块中的变量、函数、类等导出；</p>
 <p> 我们希望将其他中内容全部导出，它可以有如下的方式：</p>
 <ul>
-<li>方式一：在语句声明的前面直接加上export关键字</li>
-<li>方式二：将所有需要导出的标识符，放到export后面的 {}中 p 注意：这里的 {}里面不是ES6的对象字面量的增强写法，{}也不是表示一个对象的； 所以： export {name: name}，是错误的写法；</li>
+<li>方式一：在语句声明的前面直接加上<code>export</code>关键字</li>
+<li>方式二：将所有需要导出的标识符，放到<code>export</code>后面的 <code>{}</code>中 , 注意：这里的 <code>{}</code>里面不是ES6的对象字面量的增强写法，<code>{}</code>也不是表示一个对象的； 所以： <code>export {name: name}</code>，是错误的写法；</li>
 <li>方式三：导出时给标识符起一个别名</li>
 </ul>
-<h4 id="import关键字"><a href="#import关键字" class="headerlink" title="import关键字"></a>import关键字</h4><p>import关键字负责从另外一个模块中导入内容</p>
+<h4 id="import关键字"><a href="#import关键字" class="headerlink" title="import关键字"></a>import关键字</h4><p><code>import</code>关键字负责从另外一个模块中导入内容</p>
 <p>导入内容的方式也有多种：</p>
 <ul>
-<li>方式一：import {标识符列表} from ‘模块’； p 注意：这里的{}也不是一个对象，里面只是存放导入的标识符列表内容；</li>
+<li>方式一：<code>import {标识符列表} from &#39;模块&#39;</code>；  注意：这里的{}也不是一个对象，里面只是存放导入的标识符列表内容；</li>
 <li>方式二：导入时给标识符起别名</li>
 <li>方式三：通过 * 将模块功能放到一个模块功能对象（a module object）上</li>
 </ul>
@@ -208,28 +209,28 @@
 
 <h4 id="default用法"><a href="#default用法" class="headerlink" title="default用法"></a>default用法</h4><p>前面我们学习的导出功能都是有名字的导出（named exports）： </p>
 <ul>
-<li>在导出export时指定了名字； </li>
-<li>在导入import时需要知道具体的名字；</li>
+<li>在导出<code>export</code>时指定了名字； </li>
+<li>在导入<code>import</code>时需要知道具体的名字；</li>
 </ul>
 <p>还有一种导出叫做默认导出（default export）</p>
 <ul>
-<li>默认导出export时可以不需要指定名字； </li>
+<li>默认导出<code>export</code>时可以不需要指定名字； </li>
 <li>在导入时不需要使用 {}，并且可以自己来指定名字； </li>
-<li>它也方便我们和现有的CommonJS等规范相互操作；</li>
+<li>它也方便我们和现有的<code>CommonJS</code>等规范相互操作；</li>
 </ul>
 <img src="/2020/11/26/Javascript中的模块化/15.png" title="This is an example image">
 
 <p><strong>注意：在一个模块中，只能有一个默认导出（default export）；</strong></p>
-<h4 id="Node对ES-Module的支持"><a href="#Node对ES-Module的支持" class="headerlink" title="Node对ES Module的支持"></a>Node对ES Module的支持</h4><p>在最新的Current版本中，支持es module我们需要进行如下操作：</p>
+<h4 id="Node对ES-Module的支持"><a href="#Node对ES-Module的支持" class="headerlink" title="Node对ES Module的支持"></a>Node对ES Module的支持</h4><p>在最新的<code>Current</code>版本中，支持<code>ES module</code>我们需要进行如下操作：</p>
 <ul>
-<li>方式一：在package.json中配置 type: module</li>
-<li>方式二：文件以 .mjs 结尾，表示使用的是ES Module； </li>
+<li>方式一：在<code>package.json</code>中配置 <code>type: module</code></li>
+<li>方式二：文件以 <code>.mjs</code> 结尾，表示使用的是<code>ES Module</code>； </li>
 </ul>
-<h4 id="ES-Module加载过程"><a href="#ES-Module加载过程" class="headerlink" title="ES Module加载过程"></a>ES Module加载过程</h4><p>ES Module加载js文件的过程是编译（解析）时加载的，并且是异步的</p>
-<p>异步的意味着：JS引擎在遇到import时会去获取这个js文件，但是这个获取的过程是异步的，并不会阻塞主线程继续执行； </p>
+<h4 id="ES-Module加载过程"><a href="#ES-Module加载过程" class="headerlink" title="ES Module加载过程"></a>ES Module加载过程</h4><p><code>ES Module</code>加载js文件的过程是编译（解析）时加载的，并且是异步的</p>
+<p>异步的意味着：<code>js引擎</code>在遇到<code>import</code>时会去获取这个<code>js</code>文件，但是这个获取的过程是异步的，并不会阻塞主线程继续执行； </p>
 <ul>
-<li>也就是说设置了 type=module 的代码，相当于在script标签上也加上了 async 属性； </li>
-<li>如果我们后面有普通的script标签以及对应的代码，那么ES Module对应的js文件和代码不会阻塞它们的执行</li>
+<li>也就是说设置了<code>type=module</code>的代码，相当于在<code>script标签上</code>也加上了 <code>async</code>属性； </li>
+<li>如果我们后面有普通的script标签以及对应的代码，那么<code>ES Module</code>对应的js文件和代码不会阻塞它们的执行</li>
 </ul>
 <img src="/2020/11/26/Javascript中的模块化/16.png" title="This is an example image">
 
