@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    
+    <link rel="canonical" href="http://www.lx326.com/2020/11/26/Javascript中的模块化/">
+    
+    
+    <title>Javascript中的模块化 | LX&#39;s  Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="node.js">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.4">
+    
+    <script type="text/javascript">
+        // Data Center
+        var DC = {
+            reward:	true,
+            lv: JSON.parse('{"enable":false,"app_id":null,"app_key":null,"icon":true}'),
+            v: JSON.parse('{"enable":false,"appid":null,"appkey":null,"notify":true,"verify":true,"placeholder":"give me some sugers plz...","avatar":"wavatar"}'),
+            g: JSON.parse('{"enable":false,"lazy":true,"owner":"LXX7473","repo":"gitment","oauth":{"client_id":null,"client_secret":null},"perPage":10}'),
+            d: JSON.parse('{"app_id":null}')
+        };
+    </script>
+    <script type="text/javascript">
+        window.lazyScripts=[];
+    </script>
+    
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      
+      <img src="/img/brand.jpg" class="brand-bg">
+      
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/headhead.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">不想gg</h5>
+          <a href="mailto:LXX7473@163.com" title="LXX7473@163.com" class="mail">
+            
+              <span>L</span>
+            
+              <span>X</span>
+            
+              <span>X</span>
+            
+              <span>7</span>
+            
+              <span>4</span>
+            
+              <span>7</span>
+            
+              <span>3</span>
+            
+              <span>@</span>
+            
+              <span>1</span>
+            
+              <span>6</span>
+            
+              <span>3</span>
+            
+              <span>.</span>
+            
+              <span>c</span>
+            
+              <span>o</span>
+            
+              <span>m</span>
+            
+          </a>
+        </hgroup>
+        
+        <ul class="menu-link">
+          
+              <li>
+                <a href="https://github.com/LXX7473" target="_blank">
+                  <i class="icon icon-lg icon-github"></i>
+                </a>
+              </li>
+            
+        </ul>
+        
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                HOME
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                CATEGORIES
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                TAGS
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                ARCHIVES
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-plus-square"></i>
+                CUSTOM
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row clearfix">
+        <a href="javascript:;" class="header-icon pull-left waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">
+            <span>Javascript中的模块化</span>
+            
+        </div>
+        
+        <a href="javascript:;" id="site_search_btn" class="header-icon pull-right waves-effect waves-circle waves-light">
+            <i class="icon icon-lg icon-search"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <img src="/img/banner.jpg" class="header-bg">
+    <div class="container fade-scale">
+        <h1 class="title">Javascript中的模块化</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2020-11-26T09:50:47.000Z" itemprop="datePublished" class="page-time">
+  2020-11-26
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/笔记/">笔记</a></li></ul>
+
+            
+        </h5>
+        
+    </div>
+    
+
+</header>
+
+<div id="site_search">
+    <div class="search-title clearfix">
+        <span class="pull-left">
+          <i class="icon icon-lg icon-search"></i>
+        </span>
+        <input type="text" id="local-search-input" name="q" results="0" placeholder="search my blog..." class="form-control pull-left"/>
+        <a href="javascript:;" class="close pull-right waves-effect waves-circle waves-light">
+          <i class="icon icon-lg icon-close"></i>
+        </a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+
+<div class="container body-wrap">
+    <article id="post-Javascript中的模块化"
+  class="post-article article-type-post" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">Javascript中的模块化</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-11-26 17:50:47" datetime="2020-11-26T09:50:47.000Z"  itemprop="datePublished">2020-11-26</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/笔记/">笔记</a></li></ul>
+
+
+
+            
+
+            
+
+
+            
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            
+            <h2 id="javascript模块化开发"><a href="#javascript模块化开发" class="headerlink" title="javascript模块化开发"></a>javascript模块化开发</h2><p>​    众所周知，早期的javascript大多情况被用来做表单验证或动画实现，通常情况下短短几行代码就可以搞定。一般情况下都被写在<script>标签里面。</p>
+<p>​    但是随着前端和JavaScript的快速发展，JavaScript代码变得越来越复杂，从Ajax的出现，到后来的前后端分离，再到现在的SPA应用，前端页面正在变的越来越复杂，而没有”模块化“这件事，在很长一段时间都是javascript的硬伤</p>
+<h4 id="没有模块化会引发的问题"><a href="#没有模块化会引发的问题" class="headerlink" title="没有模块化会引发的问题"></a>没有模块化会引发的问题</h4><ol>
+<li>我必须记得每一个模块中返回对象的命名，才能在其他模块使用过程中正确的使用； </li>
+<li>代码写起来混乱不堪，每个文件中的代码都需要包裹在一个匿名函数中来编写；</li>
+<li>第三，在没有合适的规范情况下，每个人、每个公司都可能会任意命名、甚至出现模块名称相同的情况</li>
+</ol>
+<h4 id="前端众多的模块化解决方案"><a href="#前端众多的模块化解决方案" class="headerlink" title="前端众多的模块化解决方案"></a>前端众多的模块化解决方案</h4><p>JavaScript社区为了解决上面的问题，涌现出一系列好用的规范</p>
+<p>例如：</p>
+<ul>
+<li>CommonJs</li>
+<li>AMD</li>
+<li>CMD</li>
+<li>ES module</li>
+</ul>
+<p>由于AMD和CMD现在应用的地方并不是很多，所以本文主要针对<strong>CommonJS</strong>的模块化进行介绍，也会对<strong>ES Module</strong>进行简要介绍</p>
+<h2 id="CommonJS和Node"><a href="#CommonJS和Node" class="headerlink" title="CommonJS和Node"></a>CommonJS和Node</h2><p> 我们需要知道<code>CommonJS</code>是一个规范，最初提出来是在浏览器以外的地方使用，并且当时被命名为<code>ServerJS</code>，后来为了 体现它的广泛性，修改为<code>CommonJS</code>，平时我们也会简称为<code>CJS</code>。</p>
+<ul>
+<li><code>Node</code>是<code>CommonJS</code>在服务器端一个具有代表性的实现； </li>
+<li><code>Browserify</code>是<code>CommonJS</code>在浏览器中的一种实现；</li>
+<li><code>webpack</code>打包工具具备对<code>CommonJS</code>的支持和转换；</li>
+</ul>
+<p>由于Node对CommonJS进行了支持和实现，所以我们可以在开发中很方便的进行模块化开发，我们要特别注意两点</p>
+<ul>
+<li>在Node中每一个js文件都是一个单独的模块；</li>
+<li>这个模块中包括CommonJS规范的核心变量：exports、module.exports、require；</li>
+</ul>
+<h4 id="Node模块化的导入和导出"><a href="#Node模块化的导入和导出" class="headerlink" title="Node模块化的导入和导出"></a>Node模块化的导入和导出</h4><p>其中<code>exports</code>和<code>module.exports</code>可以负责对模块中的内容进行导出； </p>
+<p><code>require</code>函数可以帮助我们导入其他模块（自定义模块、系统模块、第三方库模块）中的内容；</p>
+<h4 id="exports与require"><a href="#exports与require" class="headerlink" title="exports与require"></a>exports与require</h4><p>下图短短几行代码，就是对Node模块化的体现~</p>
+<p>exports的本质是一个对象（如图）。</p>
+<p>在1.js文件中</p>
+<ul>
+<li>通过.的方式动态的为exports这个对象添加属性，将该对象导出该模块</li>
+<li>蓝色框中代表的是被导出的属性名，<strong>可以为任意值。</strong></li>
+</ul>
+<p>在2.js文件中</p>
+<ul>
+<li>通过data来对require函数的返回值进行接收，<strong>实际上：接受到的data值实际就是导出的exports对象</strong>！相信很多人看到这个结论都是疑惑的。那我们不妨论证一下这个观点。</li>
+</ul>
+<a rel=Javascript中的模块化 href="/2020/11/26/Javascript中的模块化/1.png" title="This is an example image" data-fancybox="images"><img src="/2020/11/26/Javascript中的模块化/1.png" title="This is an example image"></a>
+
+<h4 id="验证require函数的返回值是否与exports相等"><a href="#验证require函数的返回值是否与exports相等" class="headerlink" title="验证require函数的返回值是否与exports相等"></a>验证require函数的返回值是否与exports相等</h4><p>如上图所示：</p>
+<ol>
+<li>首先我们先将name,age两个变量分别导出，然后在2.js中进行引入，</li>
+<li>打印结果，然后在1s之后给data的name属性重新赋值</li>
+<li>在2s后重新打印1.js中exports这个对象的值，</li>
+<li>如果exports这个对象的name属性被重新赋值，就说明require函数的返回值与exports这个对象指向的是同一个地址</li>
+</ol>
+<a rel=Javascript中的模块化 href="/2020/11/26/Javascript中的模块化/2.png" title="This is an example image" data-fancybox="images"><img src="/2020/11/26/Javascript中的模块化/2.png" title="This is an example image"></a>
+
+
+
+<h4 id="画图解析上图代码"><a href="#画图解析上图代码" class="headerlink" title="画图解析上图代码"></a>画图解析上图代码</h4><a rel=Javascript中的模块化 href="/2020/11/26/Javascript中的模块化/3.png" title="This is an example image" data-fancybox="images"><img src="/2020/11/26/Javascript中的模块化/3.png" title="This is an example image"></a>
+
+
+
+<h4 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h4><p>exports被重新赋值，说明exports对象和require函数的返回值指向同一个引用地址（浅拷贝）。</p>
+<p>到这里我们已经看似完成了模块化的两个关键因素，导入和导出，那么<code>module.exports</code>又是什么呢？它和<code>exports</code>又有什么区别呢？让我们接着往下看。</p>
+<h4 id="module-exports"><a href="#module-exports" class="headerlink" title="module.exports"></a>module.exports</h4><p>首先，我们要知道<code>CommonJS规范</code>中是没有<code>module.exports</code>这个概念的，</p>
+<p>Node在实现的过程中使用的是<code>Module类</code>，每一个模块都是<code>Module</code>的一个实例，我们可以尝试打印一下这个属性（如下图所示），它的默认值是<code>{}</code>,</p>
+<a rel=Javascript中的模块化 href="/2020/11/26/Javascript中的模块化/4.png" title="This is an example image" data-fancybox="images"><img src="/2020/11/26/Javascript中的模块化/4.png" title="This is an example image"></a>
+
+<p>在很多时候我们发现<code>module.exports={name}</code>和<code>exports.name=name</code>这两种导出方式，都可以实现，除了语法之外，二者几乎并无区别，都完成了导出这件事，并且通过下图这种方式我们还可以得知module.exports===exports===2.js中的data，三者指向同一个引用地址</p>
+<a rel=Javascript中的模块化 href="/2020/11/26/Javascript中的模块化/5.png" title="This is an example image" data-fancybox="images"><img src="/2020/11/26/Javascript中的模块化/5.png" title="This is an example image"></a>
+
+
+
+<p>但是有一件事还没有确定，那就是module.exports和exports到底是谁真正的实现了Node的模块化导出，我们可以做一个实验，<strong>注意看下面两段代码</strong>！！！</p>
+<a rel=Javascript中的模块化 href="/2020/11/26/Javascript中的模块化/6.png" title="This is an example image" data-fancybox="images"><img src="/2020/11/26/Javascript中的模块化/6.png" title="This is an example image"></a>
+
+<h5 id="第一种操作："><a href="#第一种操作：" class="headerlink" title="第一种操作："></a>第一种操作：</h5><ol>
+<li>给<code>module.exports</code>赋值为<code>{}</code></li>
+<li>通过exports进行导出</li>
+<li>输出结果为{}</li>
+</ol>
+<p>说明虽然exports在后面进行导出，但仍然被前面的<code>module.exports</code>给覆盖掉了</p>
+<a rel=Javascript中的模块化 href="/2020/11/26/Javascript中的模块化/7.png" title="This is an example image" data-fancybox="images"><img src="/2020/11/26/Javascript中的模块化/7.png" title="This is an example image"></a>
+
+<h5 id="第二种操作"><a href="#第二种操作" class="headerlink" title="第二种操作:"></a>第二种操作:</h5><ol>
+<li>先给exports的值设置为{}，</li>
+<li>用<code>module.exports</code>导出变量，</li>
+<li>仍然可以导出成功变量。</li>
+</ol>
+<h4 id="为什么第一种操作中，exports会被module-exports覆盖掉？"><a href="#为什么第一种操作中，exports会被module-exports覆盖掉？" class="headerlink" title="为什么第一种操作中，exports会被module.exports覆盖掉？"></a>为什么第一种操作中，exports会被module.exports覆盖掉？</h4><p>结合图片（图没画好。。）我们可以看出，第二步的时候module.exports改变了引用地址，所以不管exports的值再怎么变化，也不会影响导出的结果。</p>
+<a rel=Javascript中的模块化 href="/2020/11/26/Javascript中的模块化/8.png" title="This is an example image" data-fancybox="images"><img src="/2020/11/26/Javascript中的模块化/8.png" title="This is an example image"></a>
+
+
+
+
+
+<h4 id="结论-1"><a href="#结论-1" class="headerlink" title="结论"></a>结论</h4><p><strong>所以在Node中真正实现导出的是<code>module.exports</code></strong>,而不是<strong><code>exports</code></strong>  ，也就是<strong><code>exports=module.exports</code></strong>,并且这个操作是在模块开始加载的时候就被执行了。</p>
+<h2 id="require中的细节"><a href="#require中的细节" class="headerlink" title="require中的细节"></a>require中的细节</h2><p>介绍了这么多的模块的导出，接下来讲一下<code>require</code>导入的细节，我们知道<code>require</code>是一个函数，可以帮助我们引入一个文件（模块）中导入的对象，那么<code>require</code>的查找规则到底是怎么样的呢？</p>
+<p>暂且假定require(X)</p>
+<h4 id="情况一：核心模块"><a href="#情况一：核心模块" class="headerlink" title="情况一：核心模块"></a>情况一：核心模块</h4><p>X是一个核心模块，比如path，http</p>
+<ul>
+<li>直接返回核心模块停止查找</li>
+</ul>
+<p>如果你想引入一个和核心模块相同名字的自定义模块的时候，你是不成功的，如果想要成功就必须换一个名字，</p>
+<h4 id="情况二：路径形式的文件模块"><a href="#情况二：路径形式的文件模块" class="headerlink" title="情况二：路径形式的文件模块"></a>情况二：路径形式的文件模块</h4><p>X是以./或者../或者/（根目录开头的）</p>
+<p><strong>第一步：将X当做一个文件在对应的目录下查找</strong></p>
+<ol>
+<li>如果有后缀名，直接按照文件路径查找对应的文件</li>
+<li>如果没有后缀名，会按照如下顺序<ol>
+<li>直接查找文件X（无后缀）</li>
+<li>查找X.js文件</li>
+<li>查找X.json文件</li>
+<li>查找X.node文件</li>
+</ol>
+</li>
+</ol>
+<p>**第二步：没有找到对应的文件，将X作为一个目录</p>
+<ul>
+<li><p>查找目录下面的index文件</p>
+<ol>
+<li>查找X/index.js文件 </li>
+<li>查找X/index.json文件 </li>
+<li>查找X/index.node文件 </li>
+</ol>
+<p>如果仍然没找到，那么报错not found</p>
+</li>
+</ul>
+<h4 id="情况三：自定义模块"><a href="#情况三：自定义模块" class="headerlink" title="情况三：自定义模块"></a>情况三：自定义模块</h4><p>直接是一个X（没有路径），并且X不是一个核心模块，也可以称为<strong>自定义模块</strong></p>
+<p>查找顺序：首先查找当前目录下的node_modules目录，然后查找父级....沿路径向上依次递归，直到根目录下的node_modules目录，该查找方式与javascript的原型链/作用域链查找方式十分类似，由此也可以看出，模块的路径越深，模块查找的耗时也就越多，这也是自定义模块加载速度是最慢的原因。</p>
+<p>ps:(图中的paths，是module中的属性)</p>
+<a rel=Javascript中的模块化 href="/2020/11/26/Javascript中的模块化/9.png" title="This is an example image" data-fancybox="images"><img src="/2020/11/26/Javascript中的模块化/9.png" title="This is an example image"></a>
+
+<h4 id="情况四（特殊）：优先从缓存加载"><a href="#情况四（特殊）：优先从缓存加载" class="headerlink" title="情况四（特殊）：优先从缓存加载"></a>情况四（特殊）：优先从缓存加载</h4><p>除了以上三种情况之外，我们还需要知晓一点，与前端浏览器会缓存静态脚本文件以提高性能一样，Node对引入过的模块都会进行缓存，以减少二次引用的开销，</p>
+<h4 id="几种情况的加载速度对比"><a href="#几种情况的加载速度对比" class="headerlink" title="几种情况的加载速度对比"></a>几种情况的加载速度对比</h4><ol>
+<li>不管是核心模块还是文件模块，require对于相同模块的二次加载都一律采用<strong>缓存加载优先</strong>的方式，所以属于第一优先级。</li>
+<li>而Node核心模块在Node源代码编译过程中，编译进了二进制执行文件</li>
+<li>以路径形式的文件模块，以路径作为路引进行查找，由于给定了明确的文件位置，所以也可以节约大量的时间，慢于核心模块</li>
+<li>由于既不是核心模块，也没有详细的地址，所以这类文件查找起来是最费时的</li>
+</ol>
+<p><strong>缓存加载>核心模块>路径形式的文件模块>自定义模块</strong></p>
+<h4 id="分析模块的加载过程"><a href="#分析模块的加载过程" class="headerlink" title="分析模块的加载过程"></a>分析模块的加载过程</h4><ul>
+<li>如果模块被循环引入，那么加载顺序是什么？让我们看下下面这段代码</li>
+</ul>
+<a rel=Javascript中的模块化 href="/2020/11/26/Javascript中的模块化/10.png" title="This is an example image" data-fancybox="images"><img src="/2020/11/26/Javascript中的模块化/10.png" title="This is an example image"></a>
+
+<p>涉及的文件太多，所以我把它抽象成图看起来会清晰一些</p>
+<a rel=Javascript中的模块化 href="/2020/11/26/Javascript中的模块化/11.png" title="This is an example image" data-fancybox="images"><img src="/2020/11/26/Javascript中的模块化/11.png" title="This is an example image"></a>
+
+<ul>
+<li>这个其实是一种数据结构：图结构； </li>
+<li>图结构在遍历的过程中，有深度优先搜索（DFS, depth first search）和广度优先搜索（BFS, breadth first search）；</li>
+<li>Node采用的是深度优先算法：aaa -> ccc -> ddd -> eee ->bbb</li>
+</ul>
+<p><strong>所以根据上图，我们知道同一个模块不会被重复加载，并且在模块被循环引用时，会根据深度优先进行引入</strong></p>
+<h4 id="问题：模块被多次引入时-为什么只会加载运行一次呢？"><a href="#问题：模块被多次引入时-为什么只会加载运行一次呢？" class="headerlink" title="问题：模块被多次引入时  为什么只会加载运行一次呢？"></a>问题：模块被多次引入时  为什么只会加载运行一次呢？</h4><ul>
+<li>这是因为每个模块对象module都有一个属性：loaded。 </li>
+<li>当load 为false表示还没有加载，为true表示已经加载；</li>
+</ul>
+<h4 id="CommonJS规范缺点"><a href="#CommonJS规范缺点" class="headerlink" title="CommonJS规范缺点"></a>CommonJS规范缺点</h4><a rel=Javascript中的模块化 href="/2020/11/26/Javascript中的模块化/12.png" title="This is an example image" data-fancybox="images"><img src="/2020/11/26/Javascript中的模块化/12.png" title="This is an example image"></a>
+
+<p>由图可知在2.js中引用了1.js，而打印的顺序是先执行1.js，之后再执行2.js这说明CommonJS加载模块是同步进行的</p>
+<ul>
+<li>这个在服务器不会有什么问题，因为服务器加载的js文件都是本地文件，加载速度非常快； </li>
+<li>但是在客户端的话情况就不会很乐观，这意味着后面的js代码无法继续正常执行，即使是一些简单的DOM操作</li>
+</ul>
+<p>所以在浏览器中我们通常不使用CommonJS规范，一般使用ES Module进行模块化开发</p>
+<h2 id="ES-Module的特点"><a href="#ES-Module的特点" class="headerlink" title="ES Module的特点"></a>ES Module的特点</h2><p> ES Module模块采用export和import<strong>关键字</strong>来实现模块化：</p>
+<ul>
+<li>export负责将模块内的内容导出；</li>
+<li>import负责从其他模块导入内容；</li>
+</ul>
+<h4 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h4><ol>
+<li><p>采用<code>ES Module</code>将自动采用严格模式：use strict </p>
+<p>如果你不熟悉严格模式可以简单看一下MDN上的解析： <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Strict_mode">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Strict_mode</a></p>
+</li>
+<li><p>当你在浏览器中直接打开这段代码的时候，会发生跨域。</p>
+</li>
+</ol>
+<p>这个问题在MDN上也有相应的解释：<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Modules">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Modules</a></p>
+<p>大致意思就是： 当本地测试的时候，如果你通过本地加载Html 文件 (比如一个 file:// 路径的文件), 你将会遇到 CORS 错误，因为Javascript 模块安全性需要。 </p>
+<p>所以你需要通过一个服务器来测试。</p>
+<a rel=Javascript中的模块化 href="/2020/11/26/Javascript中的模块化/13.png" title="This is an example image" data-fancybox="images"><img src="/2020/11/26/Javascript中的模块化/13.png" title="This is an example image"></a>
+
+<figure class="image-box">
+                <a rel=Javascript中的模块化 href="C:\Users\lixiang17\AppData\Roaming\Typora\typora-user-images\image-20201120165255145.png" title="image-20201120165255145" data-fancybox="images"><img src="C:\Users\lixiang17\AppData\Roaming\Typora\typora-user-images\image-20201120165255145.png" alt="image-20201120165255145" title="" class=""></a>
+                <p>image-20201120165255145</p>
+            </figure>
+
+<h4 id="export关键字"><a href="#export关键字" class="headerlink" title="export关键字"></a>export关键字</h4><p>export关键字将一个模块中的变量、函数、类等导出；</p>
+<p> 我们希望将其他中内容全部导出，它可以有如下的方式：</p>
+<ul>
+<li>方式一：在语句声明的前面直接加上export关键字</li>
+<li>方式二：将所有需要导出的标识符，放到export后面的 {}中 p 注意：这里的 {}里面不是ES6的对象字面量的增强写法，{}也不是表示一个对象的； 所以： export {name: name}，是错误的写法；</li>
+<li>方式三：导出时给标识符起一个别名</li>
+</ul>
+<h4 id="import关键字"><a href="#import关键字" class="headerlink" title="import关键字"></a>import关键字</h4><p>import关键字负责从另外一个模块中导入内容</p>
+<p>导入内容的方式也有多种：</p>
+<ul>
+<li>方式一：import {标识符列表} from '模块'； p 注意：这里的{}也不是一个对象，里面只是存放导入的标识符列表内容；</li>
+<li>方式二：导入时给标识符起别名</li>
+<li>方式三：通过 * 将模块功能放到一个模块功能对象（a module object）上</li>
+</ul>
+<a rel=Javascript中的模块化 href="/2020/11/26/Javascript中的模块化/14.png" title="This is an example image" data-fancybox="images"><img src="/2020/11/26/Javascript中的模块化/14.png" title="This is an example image"></a>
+
+
+
+<h4 id="default用法"><a href="#default用法" class="headerlink" title="default用法"></a>default用法</h4><p>前面我们学习的导出功能都是有名字的导出（named exports）： </p>
+<ul>
+<li>在导出export时指定了名字； </li>
+<li>在导入import时需要知道具体的名字；</li>
+</ul>
+<p>还有一种导出叫做默认导出（default export）</p>
+<ul>
+<li>默认导出export时可以不需要指定名字； </li>
+<li>在导入时不需要使用 {}，并且可以自己来指定名字； </li>
+<li>它也方便我们和现有的CommonJS等规范相互操作；</li>
+</ul>
+<a rel=Javascript中的模块化 href="/2020/11/26/Javascript中的模块化/15.png" title="This is an example image" data-fancybox="images"><img src="/2020/11/26/Javascript中的模块化/15.png" title="This is an example image"></a>
+
+<p><strong>注意：在一个模块中，只能有一个默认导出（default export）；</strong></p>
+<h4 id="Node对ES-Module的支持"><a href="#Node对ES-Module的支持" class="headerlink" title="Node对ES Module的支持"></a>Node对ES Module的支持</h4><p>在最新的Current版本中，支持es module我们需要进行如下操作：</p>
+<ul>
+<li>方式一：在package.json中配置 type: module</li>
+<li>方式二：文件以 .mjs 结尾，表示使用的是ES Module； </li>
+</ul>
+<h4 id="ES-Module加载过程"><a href="#ES-Module加载过程" class="headerlink" title="ES Module加载过程"></a>ES Module加载过程</h4><p>ES Module加载js文件的过程是编译（解析）时加载的，并且是异步的</p>
+<p>异步的意味着：JS引擎在遇到import时会去获取这个js文件，但是这个获取的过程是异步的，并不会阻塞主线程继续执行； </p>
+<ul>
+<li>也就是说设置了 type=module 的代码，相当于在script标签上也加上了 async 属性； </li>
+<li>如果我们后面有普通的script标签以及对应的代码，那么ES Module对应的js文件和代码不会阻塞它们的执行</li>
+</ul>
+<a rel=Javascript中的模块化 href="/2020/11/26/Javascript中的模块化/16.png" title="This is an example image" data-fancybox="images"><img src="/2020/11/26/Javascript中的模块化/16.png" title="This is an example image"></a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script></p>
+        </div>
+        
+<blockquote class="post-copyright">
+    <div class="content">
+        
+
+        
+        转载注明出处，原文地址：<a href="/2020/11/26/Javascript中的模块化/" target="_blank" rel="external">http://yoursite.com/2020/11/26/Javascript中的模块化/</a>
+        
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/headhead.jpg" alt="不想gg">
+            不想gg
+        </a>
+    </footer>
+</blockquote>
+
+        
+            <div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+            
+        
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node-js/">node.js</a></li></ul>
+
+            <div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2020/11/26/Javascript中的模块化/&title=《Javascript中的模块化》 — LX's  Blog&pic=http://yoursite.com/img/headhead.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2020/11/26/Javascript中的模块化/&title=《Javascript中的模块化》 — LX's  Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+        </div>
+        
+            
+
+
+        
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="next">
+      <a href="/2020/05/20/Redux的工程化应用/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Redux的工程化应用</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+    
+        <aside class="post-widget">
+            <nav class="post-toc-wrap" id="post-toc">
+                <strong>目录</strong>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#javascript模块化开发"><span class="post-toc-number">1.</span> <span class="post-toc-text">javascript模块化开发</span></a></li></ol>
+            </nav>
+            <div class="toc-bar"><div>
+        </aside>
+    
+</article>
+
+    <div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        我们一起来让这个世界有趣一点
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/reward-wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/reward-wechat.png" data-alipay="/img/reward-alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+    
+
+</div>
+
+    </main>
+    <footer class="footer ">
+    
+    <div class="top">
+        
+            <p>
+    <span>Links：</span>
+    
+    <span class="blogroll-item">
+        <a href="https://lx326.com" target="_blank">HOME</a>
+    </span>
+    
+</p>
+
+        
+    </div>
+    
+    <div class="bottom">
+        <p>
+            <span>
+                不想gg &copy; 2017 - 2020
+            </span>
+        		
+           	
+            
+            
+            <span>
+	            Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/codefine/hexo-theme-mellow" target="_blank">mellow</a>
+            </span>
+            
+            
+            
+
+            
+                
+<span class="site-uv" title="总访客量">
+    <i class="icon icon-user"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
+</span>
+
+
+<span class="site-pv" title="总访问量">
+    <i class="icon icon-eye"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_pv"></i>
+</span>
+
+            
+        </p>
+    </div>
+</footer>
+
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2020/11/26/Javascript中的模块化/&title=《Javascript中的模块化》 — LX's  Blog&pic=http://yoursite.com/img/headhead.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2020/11/26/Javascript中的模块化/&title=《Javascript中的模块化》 — LX's  Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACIElEQVR42u3aS3KDQAwFQN//0qQqqywCeZKwK8z0rFxgA81C1mder3gd3+vn5/zI2dmzu5ydvWFhYGA8lnFcroRx/Z0EkF/nlIqBgbEBYx5kq1FxHpoxMDAweoFyEqbz+2JgYGDcmw7mSAwMDIxrRpKiJSvpg01ezQ21OAYGxgMZvcHAZz6/fb6BgYHx7xlHcU1ab3noLD8VBgbG0oyk4TXfctFLBJNrvvK+HQYGxmMZdwXWatmZDyyjkhUDA2MDxjtK2aT11nv0wmQDAwNjCUby43wzRP6I+R9AdVCKgYGxHiNP2pLittfon9wLAwNjB0aSnPWSueqR3n8FBgbGDoxJ8fmO5l3yQn/5LQYGxtKMfHNDteyszlHzUhkDA2M3RvWivdZblVoumzEwMJZmTAJu3lDLA/RkyxoGBsaejLyhlhfA+UspD0QxMDCWZlRHhnmgTIL45HVgYGBgTErc6qiyOjC4IZfEwMB4FCMPhb0ittdoq6aJGBgYqzJ6DbXqeKA3WS2wMTAwNmD0mlzVJl2e/JU3imFgYCzNyEvE3pBylLFWr4+BgbEo4yiuPBNLwuikeMbAwNiHka9qU6w67JzjMTAw1mZUg2z1SJIm3pA+YmBgbMBIBgO9oWM+fhhtB8HAwMCIN3LlYbQ6cvjjpWBgYGDEA8gkXE4K3fIIEwMDYyHGpFk/wdyGx8DAWJoxLyAnZXC+LeM66GNgYCzK+AJiiah27zNNPgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+    
+    <!-- main-js -->
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/plugins/fastclick.js?v=1.4.4"></script>
+<script type="text/javascript" src="/js/plugins/ios-orientationchange-fix.js?v=1.4.4"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script type="text/javascript" src="/js/method.js?v=1.4.4"></script>
+<script type="text/javascript" src="/js/blog.js?v=1.4.4"></script>
+
+<!-- third-party -->
+
+
+
+
+
+
+<script type="text/javascript" src="/js/plugins/local_search.js?v=1.4.4"></script>
+<script type="text/javascript">
+	var search_path = "search.xml";
+	if (search_path.length === 0) {
+		search_path = "search.xml";
+	}
+	var path = "/" + search_path;
+	searchFunc(path, "local-search-input", "local-search-result");
+</script>
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+    
+    
+
+
+
+
+
+    <!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+            processEscapes: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+
+
+
+    
+</body>
+</html>
