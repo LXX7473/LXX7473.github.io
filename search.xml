@@ -5,7 +5,7 @@
     <entry>
       <title><![CDATA[Javascript中的模块化]]></title>
       <url>/2020/11/26/Javascript%E4%B8%AD%E7%9A%84%E6%A8%A1%E5%9D%97%E5%8C%96/</url>
-      <content type="html"><![CDATA[<h2 id="javascript模块化开发"><a href="#javascript模块化开发" class="headerlink" title="javascript模块化开发"></a>javascript模块化开发</h2><p>​    众所周知，早期的javascript大多情况被用来做表单验证或动画实现，通常情况下短短几行代码就可以搞定。一般情况下都被写在<script>标签里面。<br>​    但是随着前端和JavaScript的快速发展，JavaScript代码变得越来越复杂，从Ajax的出现，到后来的前后端分离，再到现在的SPA应用，前端页面正在变的越来越复杂，而没有”模块化“这件事，在很长一段时间都是javascript的硬伤</p>
+      <content type="html"><![CDATA[<h2 id="javascript模块化开发"><a href="#javascript模块化开发" class="headerlink" title="javascript模块化开发"></a>javascript模块化开发</h2><p>​    众所周知，早期的javascript大多情况被用来做表单验证或动画实现，通常情况下短短几行代码就可以搞定。一般情况下都被写在<code>&lt;script&gt;</code>标签里面。<br>​    但是随着前端和JavaScript的快速发展，JavaScript代码变得越来越复杂，从Ajax的出现，到后来的前后端分离，再到现在的SPA应用，前端页面正在变的越来越复杂，而没有”模块化“这件事，在很长一段时间都是javascript的硬伤</p>
 <h4 id="没有模块化会引发的问题"><a href="#没有模块化会引发的问题" class="headerlink" title="没有模块化会引发的问题"></a>没有模块化会引发的问题</h4><ol>
 <li>我必须记得每一个模块中返回对象的命名，才能在其他模块使用过程中正确的使用； </li>
 <li>代码写起来混乱不堪，每个文件中的代码都需要包裹在一个匿名函数中来编写；</li>
@@ -127,7 +127,7 @@
 </li>
 </ul>
 <h4 id="情况三：自定义模块"><a href="#情况三：自定义模块" class="headerlink" title="情况三：自定义模块"></a>情况三：自定义模块</h4><p>直接是一个X（没有路径），并且X不是一个核心模块，也可以称为<strong>自定义模块</strong></p>
-<p>查找顺序：首先查找当前目录下的node_modules目录，然后查找父级....沿路径向上依次递归，直到根目录下的node_modules目录，该查找方式与javascript的原型链/作用域链查找方式十分类似，由此也可以看出，模块的路径越深，模块查找的耗时也就越多，这也是自定义模块加载速度是最慢的原因。</p>
+<p>查找顺序：首先查找当前目录下的node_modules目录，然后查找父级….沿路径向上依次递归，直到根目录下的node_modules目录，该查找方式与javascript的原型链/作用域链查找方式十分类似，由此也可以看出，模块的路径越深，模块查找的耗时也就越多，这也是自定义模块加载速度是最慢的原因。</p>
 <p>ps:(图中的paths，是module中的属性)</p>
 <img src="/2020/11/26/Javascript中的模块化/9.png" title="This is an example image">
 
@@ -138,7 +138,7 @@
 <li>以路径形式的文件模块，以路径作为路引进行查找，由于给定了明确的文件位置，所以也可以节约大量的时间，慢于核心模块</li>
 <li>由于既不是核心模块，也没有详细的地址，所以这类文件查找起来是最费时的</li>
 </ol>
-<p><strong>缓存加载>核心模块>路径形式的文件模块>自定义模块</strong></p>
+<p><strong>缓存加载&gt;核心模块&gt;路径形式的文件模块&gt;自定义模块</strong></p>
 <h4 id="分析模块的加载过程"><a href="#分析模块的加载过程" class="headerlink" title="分析模块的加载过程"></a>分析模块的加载过程</h4><ul>
 <li>如果模块被循环引入，那么加载顺序是什么？让我们看下下面这段代码</li>
 </ul>
@@ -150,7 +150,7 @@
 <ul>
 <li>这个其实是一种数据结构：图结构； </li>
 <li>图结构在遍历的过程中，有深度优先搜索（DFS, depth first search）和广度优先搜索（BFS, breadth first search）；</li>
-<li>Node采用的是深度优先算法：aaa -> ccc -> ddd -> eee ->bbb</li>
+<li>Node采用的是深度优先算法：aaa -&gt; ccc -&gt; ddd -&gt; eee -&gt;bbb</li>
 </ul>
 <p><strong>所以根据上图，我们知道同一个模块不会被重复加载，并且在模块被循环引用时，会根据深度优先进行引入</strong></p>
 <h4 id="问题：模块被多次引入时-为什么只会加载运行一次呢？"><a href="#问题：模块被多次引入时-为什么只会加载运行一次呢？" class="headerlink" title="问题：模块被多次引入时  为什么只会加载运行一次呢？"></a>问题：模块被多次引入时  为什么只会加载运行一次呢？</h4><ul>
@@ -172,18 +172,18 @@
 </ul>
 <h4 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h4><ol>
 <li><p>采用<code>ES Module</code>将自动采用严格模式：use strict </p>
-<p>如果你不熟悉严格模式可以简单看一下MDN上的解析： <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Strict_mode">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Strict_mode</a></p>
+<p>如果你不熟悉严格模式可以简单看一下MDN上的解析： <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Strict_mode" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Strict_mode</a></p>
 </li>
 <li><p>当你在浏览器中直接打开这段代码的时候，会发生跨域。</p>
 </li>
 </ol>
-<p>这个问题在MDN上也有相应的解释：<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Modules">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Modules</a></p>
+<p>这个问题在MDN上也有相应的解释：<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Modules" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Modules</a></p>
 <p>大致意思就是： 当本地测试的时候，如果你通过本地加载Html 文件 (比如一个 file:// 路径的文件), 你将会遇到 CORS 错误，因为Javascript 模块安全性需要。 </p>
 <p>所以你需要通过一个服务器来测试。</p>
 <img src="/2020/11/26/Javascript中的模块化/13.png" title="This is an example image">
 
 <figure class="image-box">
-                <img src="C:\Users\lixiang17\AppData\Roaming\Typora\typora-user-images\image-20201120165255145.png" alt="image-20201120165255145" title="" class="">
+                <img src="//yoursite.com/2020/11/26/Javascript中的模块化/Users\lixiang17\AppData\Roaming\Typora\typora-user-images\image-20201120165255145.png" alt="image-20201120165255145" title class>
                 <p>image-20201120165255145</p>
             </figure>
 
@@ -197,7 +197,7 @@
 <h4 id="import关键字"><a href="#import关键字" class="headerlink" title="import关键字"></a>import关键字</h4><p>import关键字负责从另外一个模块中导入内容</p>
 <p>导入内容的方式也有多种：</p>
 <ul>
-<li>方式一：import {标识符列表} from '模块'； p 注意：这里的{}也不是一个对象，里面只是存放导入的标识符列表内容；</li>
+<li>方式一：import {标识符列表} from ‘模块’； p 注意：这里的{}也不是一个对象，里面只是存放导入的标识符列表内容；</li>
 <li>方式二：导入时给标识符起别名</li>
 <li>方式三：通过 * 将模块功能放到一个模块功能对象（a module object）上</li>
 </ul>
@@ -316,7 +316,7 @@
 
 
 
-</script></p>]]></content>
+]]></content>
       
         <categories>
             
