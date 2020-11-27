@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    
+    <link rel="canonical" href="http://www.lx326.com/2020/11/19/初识node/">
+    
+    
+    <title>初识node | LX&#39;s  Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="node">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.4">
+    
+    <script type="text/javascript">
+        // Data Center
+        var DC = {
+            reward:	true,
+            lv: JSON.parse('{"enable":false,"app_id":null,"app_key":null,"icon":true}'),
+            v: JSON.parse('{"enable":false,"appid":null,"appkey":null,"notify":true,"verify":true,"placeholder":"give me some sugers plz...","avatar":"wavatar"}'),
+            g: JSON.parse('{"enable":false,"lazy":true,"owner":"LXX7473","repo":"gitment","oauth":{"client_id":null,"client_secret":null},"perPage":10}'),
+            d: JSON.parse('{"app_id":null}')
+        };
+    </script>
+    <script type="text/javascript">
+        window.lazyScripts=[];
+    </script>
+    
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      
+      <img src="/img/brand.jpg" class="brand-bg">
+      
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/headhead.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">脑壳疼</h5>
+          <a href="mailto:LXX7473@163.com" title="LXX7473@163.com" class="mail">
+            
+              <span>L</span>
+            
+              <span>X</span>
+            
+              <span>X</span>
+            
+              <span>7</span>
+            
+              <span>4</span>
+            
+              <span>7</span>
+            
+              <span>3</span>
+            
+              <span>@</span>
+            
+              <span>1</span>
+            
+              <span>6</span>
+            
+              <span>3</span>
+            
+              <span>.</span>
+            
+              <span>c</span>
+            
+              <span>o</span>
+            
+              <span>m</span>
+            
+          </a>
+        </hgroup>
+        
+        <ul class="menu-link">
+          
+              <li>
+                <a href="https://github.com/LXX7473" target="_blank">
+                  <i class="icon icon-lg icon-github"></i>
+                </a>
+              </li>
+            
+        </ul>
+        
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                HOME
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                CATEGORIES
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                TAGS
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                ARCHIVES
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-plus-square"></i>
+                CUSTOM
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row clearfix">
+        <a href="javascript:;" class="header-icon pull-left waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">
+            <span>初识node</span>
+            
+        </div>
+        
+        <a href="javascript:;" id="site_search_btn" class="header-icon pull-right waves-effect waves-circle waves-light">
+            <i class="icon icon-lg icon-search"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <img src="/img/banner.jpg" class="header-bg">
+    <div class="container fade-scale">
+        <h1 class="title">初识node</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2020-11-19T01:34:59.000Z" itemprop="datePublished" class="page-time">
+  2020-11-19
+</time>
+
+
+            
+        </h5>
+        
+    </div>
+    
+
+</header>
+
+<div id="site_search">
+    <div class="search-title clearfix">
+        <span class="pull-left">
+          <i class="icon icon-lg icon-search"></i>
+        </span>
+        <input type="text" id="local-search-input" name="q" results="0" placeholder="search my blog..." class="form-control pull-left"/>
+        <a href="javascript:;" class="close pull-right waves-effect waves-circle waves-light">
+          <i class="icon icon-lg icon-close"></i>
+        </a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+
+<div class="container body-wrap">
+    <article id="post-初识node"
+  class="post-article article-type-post" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">初识node</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-11-19 09:34:59" datetime="2020-11-19T01:34:59.000Z"  itemprop="datePublished">2020-11-19</time>
+
+            
+
+
+            
+
+            
+
+
+            
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            
+            <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p><strong>写笔记的本意是对自己所学知识的一个总结，目前文笔和技术都不算成熟，可能有些知识点表达的不是很准确或有误，欢迎批评指正~~</strong></p>
+<h2 id="什么是node-js呢？"><a href="#什么是node-js呢？" class="headerlink" title="什么是node.js呢？"></a>什么是node.js呢？</h2><p>我们先看一下，官方对node.js的定义：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Node.js® is a JavaScript runtime built on Chrome&apos;s V8 JavaScript engine.</span><br></pre></td></tr></table></figure>
+
+<p>翻译过来是： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Node.js是一个基于V8 JavaScript引擎的JavaScript运行时环境。</span><br></pre></td></tr></table></figure>
+
+<p>这个官方的解释看起来十分的笼统。</p>
+<p>要搞清楚上面这句话的含义，我们要知道</p>
+<ul>
+<li>什么是V8？</li>
+<li>什么是javascript引擎？</li>
+<li>什么是javascript运行环境？</li>
+<li>为什么javascript运行的时候需要特殊的运行环境？</li>
+</ul>
+<p>那么让我们先把以上几点一一理清楚</p>
+<h2 id="JavaScript代码在浏览器中是如何被执行的？"><a href="#JavaScript代码在浏览器中是如何被执行的？" class="headerlink" title="JavaScript代码在浏览器中是如何被执行的？"></a>JavaScript代码在浏览器中是如何被执行的？</h2><p>众所周知，javascript在发明之初，仅仅是应用于浏览器执行简单的脚本任务，对浏览器中的DOM元素进行各种操作，所以当时javascript的应用场景十分有限。但随着时间的推移，人们越来越注重上网的体验，</p>
+<h4 id="不同的浏览器由不同的浏览器内核组成"><a href="#不同的浏览器由不同的浏览器内核组成" class="headerlink" title="不同的浏览器由不同的浏览器内核组成"></a>不同的浏览器由不同的浏览器内核组成</h4><ul>
+<li>Gecko：早期被Netscape和Mozilla Firefox浏览器使用； </li>
+<li>Trident：微软开发，被IE4~IE11浏览器使用，但是Edge浏览器已经转向Blink； </li>
+<li>Webkit：苹果基于KHTML开发、开源的，用于Safari，Google Chrome之前也在使用； </li>
+<li>Blink：是Webkit的一个分支，Google开发，目前应用于Google Chrome、Edge、Opera等； </li>
+<li>等等…</li>
+</ul>
+<h2 id="渲染引擎"><a href="#渲染引擎" class="headerlink" title="渲染引擎"></a>渲染引擎</h2><p>事实上，我们经常说的浏览器内核指的是浏览器的排版引擎：</p>
+<ul>
+<li>排版引擎（layout engine），也称为浏览器引擎（browser engine）、页面渲染引擎（rendering engine） 或样版引擎。</li>
+</ul>
+<h4 id="渲染引擎的工作过程："><a href="#渲染引擎的工作过程：" class="headerlink" title="渲染引擎的工作过程："></a>渲染引擎的工作过程：</h4><p>以下这张图可以完美的概括浏览器渲染页面的整个过程。</p>
+<p>在这一过程中，当HTML解析的时候遇到了JavaScript标签，会停止解析HTML，而去加载和执行JavaScript代码。理由很简单。 </p>
+<ul>
+<li>因为JavaScript代码可以操作我们的DOM；</li>
+<li>所以浏览器希望将HTML解析的DOM和JavaScript操作之后的DOM放到一起来生成最终的DOM树，而不是 频繁的去生成新的DOM树；</li>
+</ul>
+<p>而<strong>javascript</strong>就是由<strong>javascript</strong>引擎来执行的，</p>
+<h2 id="javascript引擎"><a href="#javascript引擎" class="headerlink" title="javascript引擎"></a>javascript引擎</h2><ul>
+<li>事实上我们编写的JavaScript无论你交给浏览器或者Node执行，最后都是需要被CPU执行的；</li>
+<li>但是CPU只认识自己的指令集，实际上是机器语言，才能被CPU所执行；</li>
+<li>所以我们需要JavaScript引擎帮助我们将JavaScript代码翻译成CPU指令来执行。</li>
+</ul>
+<h4 id="常见的javascript引擎"><a href="#常见的javascript引擎" class="headerlink" title="常见的javascript引擎"></a>常见的javascript引擎</h4><ul>
+<li>SpiderMonkey：第一款JavaScript引擎，由Brendan Eich开发（也就是JavaScript作者）； </li>
+<li>Chakra：微软开发，用于IT浏览器； </li>
+<li>JavaScriptCore：WebKit中的JavaScript引擎，Apple公司开发； </li>
+<li>V8：Google开发的强大JavaScript引擎，也帮助Chrome从众多浏览器中脱颖而出；</li>
+</ul>
+<h4 id="webkit内核"><a href="#webkit内核" class="headerlink" title="webkit内核"></a>webkit内核</h4><p>这里我们先以WebKit为例，WebKit事实上由两部分组成的： </p>
+<ul>
+<li><p>WebCore：负责HTML解析、布局、渲染等等相关的工作； </p>
+</li>
+<li><p>JavaScriptCore：解析、执行JavaScript代码； </p>
+<p>看到这学过小程序的同学应该会感到很熟悉，因为在小程序中编写的JavaScript代码就是被JSCore执行的；</p>
+</li>
+</ul>
+<h4 id="V8引擎"><a href="#V8引擎" class="headerlink" title="V8引擎"></a><figure class="image-box">
+                <a rel=初识node href="//yoursite.com/2020/11/19/初识node/Blog\source\images\初识node\1.png" title="1" data-fancybox="images"><img src="//yoursite.com/2020/11/19/初识node/Blog\source\images\初识node\1.png" alt="1" title class></a>
+                <p>1</p>
+            </figure>V8引擎</h4><p>我们来看一下官方对V8引擎的定义： </p>
+<ul>
+<li>V8是用C ++编写的Google开源高性能JavaScript和WebAssembly引擎，它用于Chrome和Node.js等。 </li>
+<li>它实现ECMAScript和WebAssembly，并在Windows 7或更高版本，macOS 10.12+和使用x64，IA-32， ARM或MIPS处理器的Linux系统上运行。 </li>
+<li>V8可以独立运行，也可以嵌入到任何C ++应用程序中。</li>
+</ul>
+<h4 id="简要介绍v8引擎原理"><a href="#简要介绍v8引擎原理" class="headerlink" title="简要介绍v8引擎原理"></a>简要介绍v8引擎原理</h4><figure class="image-box">
+                <a rel=初识node href="//yoursite.com/2020/11/19/初识node/Blog\source\images\初识node\2.png" title="2" data-fancybox="images"><img src="//yoursite.com/2020/11/19/初识node/Blog\source\images\初识node\2.png" alt="2" title class></a>
+                <p>2</p>
+            </figure>
+
+<p> V8引擎本身的源码非常复杂，大概有超过100w行C++代码，但是我们可以结合图片，简单了解一下它执行JavaScript代码的原理：</p>
+<ul>
+<li><p>Parse模块会将JavaScript代码转换成AST（抽象语法树），这是因为解释器并不直接认识JavaScript代码； </p>
+<ul>
+<li>如果函数没有被调用，那么是不会被转换成AST的； </li>
+<li>Parse的V8官方文档：<a href="https://v8.dev/blog/scanner" target="_blank" rel="noopener">https://v8.dev/blog/scanner</a> </li>
+</ul>
+</li>
+<li><p>Ignition是一个解释器，会将AST转换成ByteCode（字节码） p</p>
+<ul>
+<li>同时会收集TurboFan优化所需要的信息（比如函数参数的类型信息，有了类型才能进行真实的运算）； </li>
+<li>如果函数只调用一次，Ignition会执行解释执行ByteCode； </li>
+<li>Ignition的V8官方文档：<a href="https://v8.dev/blog/ignition-interpreter" target="_blank" rel="noopener">https://v8.dev/blog/ignition-interpreter</a>  </li>
+</ul>
+</li>
+<li><p>TurboFan是一个编译器，可以将字节码编译为CPU可以直接执行的机器码； -</p>
+<ul>
+<li>如果一个函数被多次调用，那么就会被标记为热点函数，那么就会经过TurboFan转换成优化的机器码，提高代码的执行性能； </li>
+<li>但是，机器码实际上也会被还原为ByteCode，这是因为如果后续执行函数的过程中，类型发生了变化（比如sum函数原来执行的是number类型，后 来执行变成了string类型），之前优化的机器码并不能正确的处理运算，就会逆向的转换成字节码； </li>
+<li>TurboFan的V8官方文档：<a href="https://v8.dev/blog/turbofan-jit" target="_blank" rel="noopener">https://v8.dev/blog/turbofan-jit</a> </li>
+</ul>
+</li>
+<li><p>上面是JavaScript代码的执行过程，事实上V8的内存回收也是其强大的另外一个原因，不过这里暂时先不展开讨论： </p>
+<ul>
+<li>Orinoco模块，负责垃圾回收，将程序中不需要的内存回收； </li>
+<li>Orinoco的V8官方文档：<a href="https://v8.dev/blog/trash-talk" target="_blank" rel="noopener">https://v8.dev/blog/trash-talk</a></li>
+</ul>
+<h3 id="浏览器和Node的区别"><a href="#浏览器和Node的区别" class="headerlink" title="浏览器和Node的区别"></a>浏览器和Node的区别</h3><p>我们可以简单理解规划出Node.js和浏览器的差异：</p>
+<p><a rel=初识node href="//yoursite.com/2020/11/19/初识node/C:%5CUsers%5Clixiang17%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20201118172421256.png" title="image-20201118172421256" data-fancybox="images"><img src="//yoursite.com/2020/11/19/初识node/C:%5CUsers%5Clixiang17%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20201118172421256.png" alt="image-20201118172421256"></a></p>
+<p>由图可见，除了HTML，webKit和显卡这些UI相关技术没有支持外，Node的结构与Chrome十分相似。它们二者都是基于事件驱动的异步架构，浏览器通过事件驱动来服务界面上的交互，而Node通过事件驱动来服务I/O。</p>
+<h2 id="node-js的安装"><a href="#node-js的安装" class="headerlink" title="node.js的安装"></a>node.js的安装</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">下载地址：https:<span class="comment">//nodejs.org/en/</span></span><br></pre></td></tr></table></figure>
+
+<p> Node.js是在2009年诞生的，目前最新的版本是分别是<strong>LTS</strong> 14.15.1，<strong>Current</strong>15.2.1</p>
+<h4 id="二者区别"><a href="#二者区别" class="headerlink" title="二者区别"></a>二者区别</h4><ul>
+<li>LTS 版本:相对稳定一些，推荐线上环境使用该版本；</li>
+<li>Current版本：最新的Node版本，包含很多新特性,但是有可能会有一些问题；</li>
+</ul>
+</li>
+</ul>
+<p><strong>安装</strong>：安装过程中会配置环境变量（让我们可以在命令行使用）并且会安装npm（Node Package Manager）工具；（在后续的文章中会着重探究npm）</p>
+<h2 id="Javascript文件在node中运行"><a href="#Javascript文件在node中运行" class="headerlink" title="Javascript文件在node中运行"></a>Javascript文件在node中运行</h2><ul>
+<li>首先电脑上需要安装Node.js环境，安装过程中会自动配置环境变量； </li>
+<li>可以通过终端命令node    js文件的方式来载入和执行对应的js文件；</li>
+</ul>
+<figure class="image-box">
+                <a rel=初识node href="//yoursite.com/2020/11/19/初识node/Users\lixiang17\AppData\Roaming\Typora\typora-user-images\image-20201119154225991.png" title="image-20201119154225991" data-fancybox="images"><img src="//yoursite.com/2020/11/19/初识node/Users\lixiang17\AppData\Roaming\Typora\typora-user-images\image-20201119154225991.png" alt="image-20201119154225991" title class></a>
+                <p>image-20201119154225991</p>
+            </figure>
+
+<h4 id="Node程序传递参数"><a href="#Node程序传递参数" class="headerlink" title="Node程序传递参数"></a>Node程序传递参数</h4><p>在某些特定的情况下，当我们在执行node程序的时候，可能希望给node传递一些参数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node index.js  lx  <span class="number">111</span></span><br></pre></td></tr></table></figure>
+
+<p>如果我们这么做的话，即意味着程序中需要我们所传递的参数.</p>
+<p>被传递的参数在node的全局对象process中的argv属性里面找到； 如果我们直接打印这个内置对象，会发现里面包含特别多的信息：比如版本、操作系统等。</p>
+<p>argv属性对应的是一个数组，里面包含了我们传递的参数。有了这个数组我们就可以通过遍历的方式，轻而易举地拿到传递的每一个参数。</p>
+<figure class="image-box">
+                <a rel=初识node href="//yoursite.com/2020/11/19/初识node/Users\lixiang17\AppData\Roaming\Typora\typora-user-images\image-20201119155436056.png" title="image-20201119155436056" data-fancybox="images"><img src="//yoursite.com/2020/11/19/初识node/Users\lixiang17\AppData\Roaming\Typora\typora-user-images\image-20201119155436056.png" alt="image-20201119155436056" title class></a>
+                <p>image-20201119155436056</p>
+            </figure>
+
+<h4 id="node中的全局对象"><a href="#node中的全局对象" class="headerlink" title="node中的全局对象"></a>node中的全局对象</h4><p>在上文提到了process这个全局对象，当然在node中提供了很多的全局对象，但是只有一部分是我们日常开发中经常使用的，在此简要介绍一下：</p>
+<p><strong>process对象</strong>：process提供了Node进程中相关的信息。</p>
+<ul>
+<li>比如Node的运行环境、参数信息等；</li>
+</ul>
+<p><strong>console对象：</strong>提供了简单的调试控制台，</p>
+<ul>
+<li>console.log  最常用的输入内容的方式：console.log </li>
+<li>console.clear  清空控制台：console.clear </li>
+<li>console.trace  打印函数的调用栈：console.trace</li>
+</ul>
+<p>当然还有一些其他的console的方法，就不一一列举了，可以参考以下地址学习一下</p>
+<p><a href="https://nodejs.org/dist/latest-v14.x/docs/api/console.html" target="_blank" rel="noopener">https://nodejs.org/dist/latest-v14.x/docs/api/console.html</a></p>
+<p><strong>定时器函数：</strong>在Node中使用定时器有好几种方式：</p>
+<ul>
+<li>setTimeout(callback, delay[, …args])：callback在delay毫秒后执行一次； </li>
+<li>setInterval(callback, delay[, …args])：callback在每delay毫秒重复执行一次；  </li>
+<li>setImmediate(callback[, …args])：callback 在I / O事件后的回调的“立即”执行；</li>
+</ul>
+
+        </div>
+        
+<blockquote class="post-copyright">
+    <div class="content">
+        
+
+        
+        转载注明出处，原文地址：<a href="/2020/11/19/初识node/" target="_blank" rel="external">http://yoursite.com/2020/11/19/初识node/</a>
+        
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/headhead.jpg" alt="脑壳疼">
+            脑壳疼
+        </a>
+    </footer>
+</blockquote>
+
+        
+            <div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+            
+        
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/">node</a></li></ul>
+
+            <div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2020/11/19/初识node/&title=《初识node》 — LX's  Blog&pic=http://yoursite.com/img/headhead.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2020/11/19/初识node/&title=《初识node》 — LX's  Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+        </div>
+        
+            
+
+
+        
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="prev">
+      <a href="/2020/11/26/Javascript中的模块化/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Javascript中的模块化(更新中~)</h4>
+      </a>
+    </div>
+  
+
+  
+</nav>
+
+
+    
+    
+        <aside class="post-widget">
+            <nav class="post-toc-wrap" id="post-toc">
+                <strong>目录</strong>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#什么是node-js呢？"><span class="post-toc-number"></span> <span class="post-toc-text">什么是node.js呢？</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#JavaScript代码在浏览器中是如何被执行的？"><span class="post-toc-number"></span> <span class="post-toc-text">JavaScript代码在浏览器中是如何被执行的？</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#不同的浏览器由不同的浏览器内核组成"><span class="post-toc-number">0.1.</span> <span class="post-toc-text">不同的浏览器由不同的浏览器内核组成</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#渲染引擎"><span class="post-toc-number"></span> <span class="post-toc-text">渲染引擎</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#渲染引擎的工作过程："><span class="post-toc-number">0.1.</span> <span class="post-toc-text">渲染引擎的工作过程：</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#javascript引擎"><span class="post-toc-number"></span> <span class="post-toc-text">javascript引擎</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#常见的javascript引擎"><span class="post-toc-number">0.1.</span> <span class="post-toc-text">常见的javascript引擎</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#webkit内核"><span class="post-toc-number">0.2.</span> <span class="post-toc-text">webkit内核</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#V8引擎"><span class="post-toc-number">0.3.</span> <span class="post-toc-text">
+                
+                1
+            V8引擎</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#简要介绍v8引擎原理"><span class="post-toc-number">0.4.</span> <span class="post-toc-text">简要介绍v8引擎原理</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#浏览器和Node的区别"><span class="post-toc-number">1.</span> <span class="post-toc-text">浏览器和Node的区别</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#node-js的安装"><span class="post-toc-number"></span> <span class="post-toc-text">node.js的安装</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#二者区别"><span class="post-toc-number">0.1.</span> <span class="post-toc-text">二者区别</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Javascript文件在node中运行"><span class="post-toc-number"></span> <span class="post-toc-text">Javascript文件在node中运行</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Node程序传递参数"><span class="post-toc-number">0.1.</span> <span class="post-toc-text">Node程序传递参数</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#node中的全局对象"><span class="post-toc-number">0.2.</span> <span class="post-toc-text">node中的全局对象</span></a></li></ol></li></ol>
+            </nav>
+            <div class="toc-bar"><div>
+        </aside>
+    
+</article>
+
+    <div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        我们一起来让这个世界有趣一点
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/reward-wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/reward-wechat.png" data-alipay="/img/reward-alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+    
+
+</div>
+
+    </main>
+    <footer class="footer ">
+    
+    <div class="top">
+        
+            <p>
+    <span>Links：</span>
+    
+    <span class="blogroll-item">
+        <a href="https://lx326.com" target="_blank">HOME</a>
+    </span>
+    
+</p>
+
+        
+    </div>
+    
+    <div class="bottom">
+        <p>
+            <span>
+                脑壳疼 &copy; 2017 - 2020
+            </span>
+        		
+           	
+            
+            
+            <span>
+	            Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/codefine/hexo-theme-mellow" target="_blank">mellow</a>
+            </span>
+            
+            
+            
+
+            
+                
+<span class="site-uv" title="总访客量">
+    <i class="icon icon-user"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
+</span>
+
+
+<span class="site-pv" title="总访问量">
+    <i class="icon icon-eye"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_pv"></i>
+</span>
+
+            
+        </p>
+    </div>
+</footer>
+
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2020/11/19/初识node/&title=《初识node》 — LX's  Blog&pic=http://yoursite.com/img/headhead.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2020/11/19/初识node/&title=《初识node》 — LX's  Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABxElEQVR42u3aQWrEMAwF0Nz/0il0V4Z4vuTYSeF5NUzAftoIWfJxxOv8XVf/f66rr5//HysWLi7uNPccrjE3CSzZMzHg4uLu544PHm+RI64SWWLAxcV9J7dX+uSB4eLi/kdu9QKTf8XFxX0nN29wJA2RcVLLd8PFxX2KW212rPi9sL+Li4tb5J7FVQ1pjCufjouLu4U73igvVqpXnV54uLi4T3GTxkf1qtNrl0RDVlxc3AXc+VHHTMLKz/pTkeHi4i7m5m3N6nWo+sCrPKrBxcVdxq1SZtJZL5hCFwcXF3cjNylHeo8zkubpbdNgXFzcIrc3au2lrV7iw8XF3clNNu0NR/P0VE2duLi4e7jV5sV8exQXF/fN3HykOn98/uQimvzg4uIu4/YKkbxM6T3v+FJ44eLiLubOPLGqhpQnx8uQcHFxN3JnBqj5mLY6XMHFxX2Wm6/5wUn1KlWYCePi4t7E7Y1X86tO3n5N2jG4uLg7ub3k1evBVB91Fbo4uLi4C7jz5Uh+BbqtfMHFxX0Bt9oe7QX2ZWdcXNwXc/MBag5KUiEuLu5ObmHYGVxscnQePC4u7k7u/I2jN17NH2zh4uJu5P4AYpLnHvV5XawAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+    
+    <!-- main-js -->
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/plugins/fastclick.js?v=1.4.4"></script>
+<script type="text/javascript" src="/js/plugins/ios-orientationchange-fix.js?v=1.4.4"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script type="text/javascript" src="/js/method.js?v=1.4.4"></script>
+<script type="text/javascript" src="/js/blog.js?v=1.4.4"></script>
+
+<!-- third-party -->
+
+
+
+
+
+
+<script type="text/javascript" src="/js/plugins/local_search.js?v=1.4.4"></script>
+<script type="text/javascript">
+	var search_path = "search.xml";
+	if (search_path.length === 0) {
+		search_path = "search.xml";
+	}
+	var path = "/" + search_path;
+	searchFunc(path, "local-search-input", "local-search-result");
+</script>
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+    
+    
+
+
+
+
+
+    <!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+            processEscapes: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+
+
+
+    
+</body>
+</html>
