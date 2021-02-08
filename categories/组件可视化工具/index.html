@@ -3,13 +3,13 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     
-    <link rel="canonical" href="http://www.lx326.com/2020/11/30/你可能不知道的Set和WeakSet/">
+    <link rel="canonical" href="http://www.lx326.com/categories/组件可视化工具/">
     
     
-    <title>你可能不知道的Set和WeakSet | LX&#39;s  Blog</title>
+    <title>分类: 组件可视化工具 | LX&#39;s  Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta name="keywords" content="ES6">
+    <meta name="keywords" content>
     <link rel="shortcut icon" href="/img/favicon.ico">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css">
     <link rel="stylesheet" href="/css/style.css?v=1.4.4">
@@ -17,7 +17,7 @@
     <script type="text/javascript">
         // Data Center
         var DC = {
-            reward:	true,
+            reward:	false,
             lv: JSON.parse('{"enable":false,"app_id":null,"app_key":null,"icon":true}'),
             v: JSON.parse('{"enable":false,"appid":null,"appkey":null,"notify":true,"verify":true,"placeholder":"give me some sugers plz...","avatar":"wavatar"}'),
             g: JSON.parse('{"enable":false,"lazy":true,"owner":"LXX7473","repo":"gitment","oauth":{"client_id":null,"client_secret":null},"perPage":10}'),
@@ -106,7 +106,7 @@
               </a>
             </li>
         
-            <li class="">
+            <li class=" active">
               <a href="/categories"  >
                 <i class="icon icon-lg icon-th-list"></i>
                 CATEGORIES
@@ -146,7 +146,7 @@
           <i class="icon icon-lg icon-navicon"></i>
         </a>
         <div class="flex-col header-title ellipsis">
-            <span>你可能不知道的Set和WeakSet</span>
+            <span>分类: 组件可视化工具</span>
             
         </div>
         
@@ -156,22 +156,34 @@
         
     </div>
 </header>
-<header class="content-header post-header">
+<header class="content-header categories-header">
     <img src="/img/banner.jpg" class="header-bg">
     <div class="container fade-scale">
-        <h1 class="title">你可能不知道的Set和WeakSet</h1>
+        <h1 class="title">分类: 组件可视化工具</h1>
         <h5 class="subtitle">
-            
-                <time datetime="2020-11-30T06:22:24.000Z" itemprop="datePublished" class="page-time">
-  2020-11-30
-</time>
-
-
             
         </h5>
         
     </div>
     
+<div class="tabs-bar container">
+    <nav class="tags-list">
+        <a href="/categories" style="-webkit-order:-1;order:-1" class="tags-list-item waves-effect waves-button waves-light
+            ">All</a>
+        
+            <a href="/categories/笔记/" backup-style="-webkit-order:0;order:0" class="tags-list-item waves-effect waves-button waves-light">笔记</a>
+            
+        
+            <a href="/categories/组件可视化工具/" backup-style="-webkit-order:1;order:1" class="tags-list-item waves-effect waves-button waves-light active">组件可视化工具</a>
+            
+        
+    </nav>
+    <!-- PC show more-->
+    <div class="tags-list-more">
+        <a href="javascript:;" class="action tags-list-item waves-effect waves-circle waves-light"><i class="icon icon-ellipsis-h"></i></a>
+    </div>
+</div>
+
 
 </header>
 
@@ -188,161 +200,45 @@
     <div id="local-search-result"></div>
 </div>
 
-
-<div class="container body-wrap">
-    <article id="post-你可能不知道的Set和WeakSet"
-  class="post-article article-type-post" itemprop="blogPost">
-    <div class="post-card">
-        <h1 class="post-card-title">你可能不知道的Set和WeakSet</h1>
-        <div class="post-meta">
-            <time class="post-time" title="2020-11-30 14:22:24" datetime="2020-11-30T06:22:24.000Z"  itemprop="datePublished">2020-11-30</time>
-
-            
-
-
-            
-
-            
-
-
-            
-        </div>
-        <div class="post-content" id="post-content" itemprop="postContent">
-            
-            <h2 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h2><h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p><code>Set</code> 是 <code>ES6</code> 提供的一种新的数据结构， 和数组一样，都可以用来存储有序的数据集合，但是它本身却不具备根据索引的访问某一个具体元素的能力，你可以按照插入的顺序迭代它的元素。 不过需要<strong>注意</strong>的是<code>Set</code>中的元素只会<strong>出现一次</strong>，即 Set 中的元素是唯一的。说了这么多，让我们来看一下Set的语法吧~</p>
-<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3>
-        </div>
-        
-<blockquote class="post-copyright">
-    <div class="content">
-        
-
-        
-        转载注明出处，原文地址：<a href="/2020/11/30/你可能不知道的Set和WeakSet/" target="_blank" rel="external">http://yoursite.com/2020/11/30/你可能不知道的Set和WeakSet/</a>
-        
-    </div>
-    <footer>
-        <a href="http://yoursite.com">
-            <img src="/img/headhead.jpg" alt="脑壳疼">
-            脑壳疼
-        </a>
-    </footer>
-</blockquote>
-
-        
-            <div class="page-reward">
-    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
-</div>
-
-            
-        
-        <div class="post-footer">
-            
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ES6/">ES6</a></li></ul>
-
-            <div class="page-share-wrap">
+<div class="container body-wrap fade">
     
+            <div class="waterfall">
+                
+                    <div class="waterfall-item">
+  <article class="article-card archive-article">
+    <div class="post-meta">
+      <time class="post-time" title="2021-02-07 21:16:15" datetime="2021-02-07T13:16:15.000Z"  itemprop="datePublished">2021-02-07</time>
 
-<div class="page-share" id="pageShare">
-    <ul class="reset share-icons">
       
-      <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2020/11/30/你可能不知道的Set和WeakSet/&title=《你可能不知道的Set和WeakSet》 — LX's  Blog&pic=http://yoursite.com/img/headhead.jpg" data-title="微博">
-          <i class="icon icon-weibo"></i>
-        </a>
-      </li>
-      
-      <li>
-        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
-          <i class="icon icon-weixin"></i>
-        </a>
-      </li>
-      
-      <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2020/11/30/你可能不知道的Set和WeakSet/&title=《你可能不知道的Set和WeakSet》 — LX's  Blog&source=" data-title=" QQ">
-          <i class="icon icon-qq"></i>
-        </a>
-      </li>
-      
-    </ul>
- </div>
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/组件可视化工具/">组件可视化工具</a></li></ul>
 
 
 
-    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
-        <i class="icon icon-share-alt icon-lg"></i>
-    </a>
-</div>
-
-        </div>
-        
-            
-
-
-        
     </div>
     
-<nav class="post-nav flex-row flex-justify-between">
-  
-    <div class="prev">
-      <a href="/2021/02/07/StoryBook6-0/" id="post-prev" class="post-nav-link">
-        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">StoryBook6.1使用心得（前端组件化必备神器~~~）</h4>
-      </a>
-    </div>
-  
-
-  
-    <div class="next">
-      <a href="/2020/11/27/nodeneibu/" id="post-next" class="post-nav-link">
-        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">nodeneibu</h4>
-      </a>
-    </div>
-  
-</nav>
 
 
-    
-    
-        <aside class="post-widget">
-            <nav class="post-toc-wrap" id="post-toc">
-                <strong>目录</strong>
-                <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Set"><span class="post-toc-number">1.</span> <span class="post-toc-text">Set</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#介绍"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">介绍</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#语法"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">语法</span></a></li></ol></li></ol>
-            </nav>
-            <div class="toc-bar"><div>
-        </aside>
-    
-</article>
-
-    <div id="reward" class="page-modal reward-lay">
-    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <h3 class="reward-title">
-        <i class="icon icon-quote-left"></i>
-        我们一起来让这个世界有趣一点
-        <i class="icon icon-quote-right"></i>
+  
+    <h3 class="post-title " itemprop="name">
+      <a class="post-title-link" href="/2021/02/07/StoryBook6-0/">StoryBook6.1使用心得（前端组件化必备神器~~~）</a>
     </h3>
-    <div class="reward-content">
-        
-        <div class="reward-code">
-            <img id="rewardCode" src="/img/reward-wechat.png" alt="打赏二维码">
-        </div>
-        
-        <label class="reward-toggle">
-            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
-                data-wechat="/img/reward-wechat.png" data-alipay="/img/reward-alipay.png">
-            <div class="reward-toggle-ctrol">
-                <span class="reward-toggle-item wechat">微信</span>
-                <span class="reward-toggle-label"></span>
-                <span class="reward-toggle-item alipay">支付宝</span>
-            </div>
-        </label>
-        
-    </div>
-</div>
+  
+
+
 
     
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端好用的库/">前端好用的库</a></li></ul>
 
+    </div>
+    
+  </article>
+</div>
+                
+            </div>
+        
+    
 </div>
 
     </main>
@@ -405,7 +301,7 @@
     <ul class="reset share-icons">
       
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2020/11/30/你可能不知道的Set和WeakSet/&title=《你可能不知道的Set和WeakSet》 — LX's  Blog&pic=http://yoursite.com/img/headhead.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/categories/组件可视化工具/&title=LX's  Blog&pic=http://yoursite.com/img/headhead.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -417,7 +313,7 @@
       </li>
       
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2020/11/30/你可能不知道的Set和WeakSet/&title=《你可能不知道的Set和WeakSet》 — LX's  Blog&source=" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/categories/组件可视化工具/&title=LX's  Blog&source=" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -429,7 +325,7 @@
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACuUlEQVR42u3aS47jMAwFwL7/pTPArAbosf34UZJFaRW4E1mlhagm+fMTj9ff8fvJv89fv8bVN6/muRpXa1gbeHh4eK2lJ1NfvSwB3D+ZrOfqO3h4eHineffLuvrx5NBPAkyyuQ8WPDw8vI/y7j8nm1K9dufvxcPDw/tmXn457s15H2Dw8PDwvoeXp1CrqYdeujZfw1quBQ8PDy/mTQ70T30+WN/Dw8PDG1TVe4nX/KDvJYsLq8XDw8M7wMuvsMmC8utv9XkSEgr/MeDh4eEt8bYapPJgkG9lElQun+Ph4eGt8qqJ2kkIqZbNkmDzEEjw8PDwjvGqyYJqCSoPLbvNXnh4eHjneL3y/2S5Ww0BD+vBw8PDO8ybJ3OrmEkTQxR+8PDw8D7Eqxalqi0CSRKkuVl4eHh4B3jV63Xygt5fJ41ZERgPDw9viff+RqteSqJXQsPDw8M7wcuP7/zim8zZu3z3EiJ4eHh4u7xqA+hWAay6Kc0LNx4eHt4BXsLI21h7M1RDyKRoh4eHhzfn9ZqZXsHIUwb5bFUwHh4e3gnebuphgpk0XT3MiYeHh3eAN68ZbQHy0lq1twoPDw9vl5f/k99L2laLWJN2gcu4h4eHh7fE25o6ScvmV+FeK9h/nuPh4eEd4PUWt9sstZU+LqRx8fDw8Aa83aRttdUg36ZmogQPDw/vLbxJi0Cy3GrKOAlXhQQuHh4e3phXrZJV26Gqz7fatvDw8PDO8V7FMQkY1eXm5bTL+fHw8PAO8PLRSzHkm5K8pZqkwMPDwzvHmxzxeXms2kbQa+EqRz88PDy8Aa96tZ3kP5Krdp47KXRG4OHh4b2d1ytNVYtYVdjDr/Dw8PC+gFe9Ci8U+1vrwcPDwzvNqyYjek1aeVKjcPRPqnx4eHh4LV71UO4VvfIjfnIdX6jv4eHh4d3x/gA4UmnO0JrIuwAAAABJRU5ErkJggg==" alt="微信分享二维码">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACIElEQVR42u3aQY7CMAwFUO5/aWaLNBB92wWpycsKQUnzurBc249HvJ4v6/Wb/9d8+vXTnuu7XLwwMDBuy3gu1/qa/BD5r8l93+yDgYFxAGMdEJND54DkkeVnw8DAwEhSvSRcXptiYmBgYKy3K2wdHPSye2FgYBzA6KVr65QxTx+rSSQGBsZpjLzq/vvPX+lvYGBg3IrxLK683LZ+cZ2c4c2pMDAwtmZUByPWpF4zcjKogYGBcQ6j+kJbbQZc2yjFwMA4jTEvhE1CZBX/8Y4YGBhbM/KA+43CWVLiHzUAMDAwNmLkgW+CnATTqHiHgYGxNSMpmVVfLyeAUScWAwNja8Y816qWzHoPtJw4YmBg3JxRDZd5apgj561QDAyMcxjVwn21JVkd88qbphgYGOcwqsMW60yzWj7rDWpgYGCcw0iOW03pJmG6OTOCgYFxDGMSx+bJX3PYAgMDY2tGnt5NwuXkAeUhGAMD4wRGucg1Dtz5SFk5EGNgYGzHmBTXqm2AXkCPrsfAwDiAUR25qDYGEkw1icTAwDiNkQ+E5cMZzQP1XmIxMDA2ZfQK+r36/Py1udyJxcDA2IJRPVZeUEuaBKMBi97CwMC4LWMyGDF5ctU2AwYGBkZvrCEpq62/mQxbYGBgYPTKZ2tA7+7RbhgYGBjxUEWvrFZtBrz5LwYGxgGMaujME8f5CGy0GwYGxtaM3zQa88eUYJodDwwMjPsx/gDlLyy6qAzeDAAAAABJRU5ErkJggg==" alt="微信分享二维码">
 </div>
 
 
