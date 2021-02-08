@@ -1,9 +1,8 @@
 ---
-title: StoryBook6.0
+title: StoryBook6.1使用心得（前端组件化必备神器~~~）
 date: 2021-02-07 21:16:15
-tags: 组件化工具
+tags: 组件可视化工具
 ---
-
 
 
 ## 组件化开发常见的问题
@@ -117,9 +116,9 @@ Primary.args = {
 
 这时组件就会被成功的展示：
 
-![image-20210203100835369](/Users/koolearn/Library/Application Support/typora-user-images/image-20210203100835369.png)
+![image-20210203100835369](https://gitee.com/lxx7473/images/raw/master/img/20210208141540.png)
 
-### 故事页中组件的基本配置以及常见操作：
+### 故事页中组件的核心配置以及常见操作：
 
 下列代码主要涉及几个属性的配置
 
@@ -215,7 +214,7 @@ export const second = Template2.bind({});
 
 Primary组件样式已经被改变
 
-![image-20210203112425437](/Users/koolearn/Library/Application Support/typora-user-images/image-20210203112425437.png)
+![image-20210203112425437](https://gitee.com/lxx7473/images/raw/master/img/20210208134441.png)
 
 Second组件样式未被改变
 
@@ -324,7 +323,7 @@ export const parameters = { docs: { page: null } };
 
 ![image-20210203155502431](https://gitee.com/lxx7473/images/raw/master/img/20210203155502.png)
 
-通过修改`page`属性我们也可以`doc`的结构进行配置
+通过修改`page`属性，也可以对`doc`的结构进行配置
 
 ```javascript
 //.Button.stories.jsx
@@ -348,7 +347,9 @@ parameters: {
                  <Subtitle /> 
               //描述
                   <Description /> 
-              //被展示的组件
+              //被展示的组件  
+              //includePrimary:是否包含默认的组件
+              //title：组件标题
                    <Stories includePrimary={true} title='' />
               //组件的属性列表
                     <ArgsTable story={PRIMARY_STORY} />
@@ -357,3 +358,15 @@ parameters: {
         },
     }
 ```
+
+展示：
+
+![image-20210208141303131](https://gitee.com/lxx7473/images/raw/master/img/20210208141303.png)
+
+以上就是StoryBook的一些常见操作，掌握以上知识点就已经完全满足日常的开发需要了，后续发现其他好用的会继续补充~~
+
+
+
+
+
+
